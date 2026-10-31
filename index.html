@@ -3,119 +3,150 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>¡A hablar! Calendario de Adviento</title>
-<meta name="description" content="Calendario de Adviento para practicar español hablando: una ventanita con una tarea oral cada día.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E🎁%3C/text%3E%3C/svg%3E">
+<title>¡A hablar! 30 días de conversación</title>
+<meta name="description" content="Calendario de 30 ventanas para practicar español hablando: cada día, una tarea oral nueva.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E💬%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg1:#0e3b43; --bg2:#0a2a3a; --ink:#16323a; --paper:#fffaf0;
-  --gold:#ffcf4a; --gold-d:#e9a800; --teal:#12b5b0; --coral:#ff6f61; --plum:#7a4fd6; --leaf:#3fb37f;
-  --radius:18px;
+  --cream:#fff6e4; --cream2:#ffeccb; --ink:#23323a; --muted:#6b7a80;
+  --gold:#ffc94a; --teal:#17b3ad; --coral:#ff6b5b; --plum:#7b52d3; --orange:#f28a1e; --green:#3cb27c; --blue:#3b7bd8;
+  --radius:20px;
 }
 *{box-sizing:border-box;margin:0}
 html{-webkit-text-size-adjust:100%}
 body{
-  font-family:'Nunito',system-ui,sans-serif; color:#fff; min-height:100vh;
-  background:
-    radial-gradient(circle at 15% 10%, #1b6a72 0, transparent 40%),
-    radial-gradient(circle at 85% 90%, #2a4b8f 0, transparent 45%),
-    linear-gradient(160deg,var(--bg1),var(--bg2));
-  background-attachment:fixed; overflow-x:hidden;
+  font-family:'Nunito',system-ui,sans-serif;color:var(--ink);min-height:100vh;
+  background-color:var(--cream);
+  background-image:
+    radial-gradient(circle at 12% 8%, rgba(255,107,91,.20) 0, transparent 34%),
+    radial-gradient(circle at 92% 22%, rgba(23,179,173,.20) 0, transparent 38%),
+    radial-gradient(circle at 50% 100%, rgba(255,201,74,.35) 0, transparent 45%),
+    radial-gradient(rgba(35,50,58,.07) 1.4px, transparent 1.6px);
+  background-size:auto,auto,auto,22px 22px;
+  background-attachment:fixed;overflow-x:hidden;
 }
-#snow{position:fixed;inset:0;pointer-events:none;z-index:0}
-main{position:relative;z-index:1;max-width:1000px;margin:0 auto;padding:28px 16px 60px}
-header{text-align:center;margin-bottom:22px}
-.kicker{font-weight:800;letter-spacing:.18em;text-transform:uppercase;font-size:.8rem;color:var(--gold)}
-h1{font-family:'Fredoka',sans-serif;font-weight:700;font-size:clamp(2.4rem,9vw,4.6rem);line-height:1.02;margin:6px 0 10px;
-  color:#fff;-webkit-text-stroke:0;text-shadow:0 4px 0 #0a2a3a,0 0 30px rgba(255,207,74,.35)}
+main{position:relative;max-width:1020px;margin:0 auto;padding:30px 16px 56px}
+
+/* ---- cabecera ---- */
+header{text-align:center;position:relative;margin-bottom:26px}
+.bubble{position:absolute;padding:9px 16px;border-radius:22px;font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.05rem;color:#fff;
+  box-shadow:0 5px 0 rgba(0,0,0,.14);animation:float 5s ease-in-out infinite}
+.bubble::after{content:"";position:absolute;bottom:-9px;width:16px;height:16px;background:inherit;transform:rotate(45deg);border-radius:3px}
+.b1{left:2%;top:14px;background:var(--coral);transform:rotate(-7deg)}
+.b1::after{left:22px}
+.b2{right:2%;top:60px;background:var(--teal);transform:rotate(6deg);animation-delay:-2s}
+.b2::after{right:22px}
+.b3{left:0;top:140px;background:var(--plum);transform:rotate(4deg);animation-delay:-3.5s}
+.b3::after{left:18px}
+@keyframes float{50%{translate:0 -8px}}
+@media(max-width:760px){.bubble{display:none}}
+.kicker{display:inline-block;background:var(--ink);color:var(--gold);font-weight:800;letter-spacing:.16em;text-transform:uppercase;font-size:.78rem;padding:6px 14px;border-radius:99px}
+h1{font-family:'Fredoka',sans-serif;font-weight:700;font-size:clamp(3rem,13vw,6rem);line-height:1;margin:14px 0 10px;color:#fff;
+  -webkit-text-stroke:10px var(--ink);paint-order:stroke fill;text-shadow:6px 7px 0 var(--coral);letter-spacing:.01em}
 h1 span{color:var(--gold)}
-.lead{max-width:560px;margin:0 auto;color:#d6eef0;font-size:1.05rem;line-height:1.5}
-.bar{max-width:420px;margin:18px auto 0}
-.bar-top{display:flex;justify-content:space-between;font-weight:800;font-size:.9rem;color:#d6eef0;margin-bottom:6px}
-.track{height:12px;border-radius:99px;background:rgba(255,255,255,.14);overflow:hidden}
-.fill{height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--gold),var(--coral));transition:width .6s}
+.lead{max-width:560px;margin:0 auto;font-size:1.08rem;line-height:1.55;color:#3d4d54;font-weight:600}
+.bar{max-width:440px;margin:20px auto 0;background:#fff;border-radius:18px;padding:12px 16px;box-shadow:0 5px 0 rgba(35,50,58,.12)}
+.bar-top{display:flex;justify-content:space-between;font-weight:800;font-size:.92rem;margin-bottom:7px}
+.track{height:14px;border-radius:99px;background:#ece3d0;overflow:hidden}
+.fill{height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--teal),var(--green));transition:width .6s}
+.today-chip{margin-top:14px;display:inline-block;background:var(--gold);padding:7px 16px;border-radius:99px;font-weight:800;box-shadow:0 4px 0 rgba(35,50,58,.18)}
 
-.grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:26px}
+/* ---- ventanas ---- */
+.grid{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;margin-top:28px}
 @media(max-width:820px){.grid{grid-template-columns:repeat(4,1fr)}}
-@media(max-width:520px){.grid{grid-template-columns:repeat(3,1fr);gap:10px}}
-
-.door{position:relative;aspect-ratio:1/1.08;perspective:700px;border:0;background:none;padding:0;cursor:pointer;font:inherit;color:inherit}
-.door .inside{position:absolute;inset:0;border-radius:var(--radius);display:grid;place-items:center;
-  background:var(--paper);color:var(--ink);box-shadow:inset 0 3px 10px rgba(0,0,0,.25);font-size:2.2rem}
-.door .leaf{position:absolute;inset:0;border-radius:var(--radius);transform-origin:left center;transition:transform .7s cubic-bezier(.5,.1,.2,1);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
-  background:var(--c);box-shadow:0 6px 0 rgba(0,0,0,.22),0 10px 18px rgba(0,0,0,.25);overflow:hidden}
-.door .leaf::before{content:"";position:absolute;inset:7px;border:2px dashed rgba(255,255,255,.55);border-radius:calc(var(--radius) - 6px)}
-.door .leaf::after{content:"";position:absolute;right:11px;top:50%;width:11px;height:11px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 3px rgba(0,0,0,.18)}
-.door .n{font-family:'Fredoka',sans-serif;font-weight:700;font-size:clamp(1.8rem,5.5vw,2.8rem);line-height:1;text-shadow:0 3px 0 rgba(0,0,0,.2);position:relative}
-.door .tag{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;opacity:.95;position:relative}
-.door:hover:not(.locked) .leaf{transform:rotateY(-24deg)}
-.door.done .leaf{transform:rotateY(-110deg)}
-.door.done .inside::after{content:"✓";position:absolute;top:6px;right:9px;font-size:1rem;font-weight:800;color:#fff;background:var(--leaf);width:22px;height:22px;border-radius:50%;display:grid;place-items:center}
+@media(max-width:520px){.grid{grid-template-columns:repeat(3,1fr);gap:11px}}
+.door{position:relative;aspect-ratio:1/1.1;perspective:800px;border:0;background:none;padding:0;cursor:pointer;font:inherit;color:#fff}
+.door .inside{position:absolute;inset:0;border-radius:var(--radius);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+  background:#fffdf7;color:var(--ink);box-shadow:inset 0 4px 12px rgba(35,50,58,.22);font-size:clamp(1.8rem,6vw,2.6rem);border:3px solid var(--c)}
+.door .inside small{font-size:.66rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.door .leaf{position:absolute;inset:0;border-radius:var(--radius);transform-origin:left center;transition:transform .8s cubic-bezier(.5,.1,.2,1);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;
+  background:linear-gradient(160deg,var(--c),var(--c2));box-shadow:0 6px 0 rgba(35,50,58,.22);overflow:hidden}
+.door .leaf::before{content:"";position:absolute;inset:8px;border:2.5px dashed rgba(255,255,255,.6);border-radius:calc(var(--radius) - 7px)}
+.door .leaf::after{content:"";position:absolute;right:12px;top:52%;width:11px;height:11px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 3px rgba(0,0,0,.16)}
+.door .n{font-family:'Fredoka',sans-serif;font-weight:700;font-size:clamp(1.9rem,6vw,3rem);line-height:1;position:relative;
+  -webkit-text-stroke:5px rgba(35,50,58,.35);paint-order:stroke fill}
+.door .tag{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;position:relative}
+.door.open-now:hover .leaf{transform:rotateY(-26deg)}
+.door.past .leaf{transform:rotateY(-90deg);opacity:0;visibility:hidden}
+.door.done .inside::after{content:"✓";position:absolute;top:-8px;right:-8px;font-size:1rem;font-weight:800;color:#fff;background:var(--green);width:26px;height:26px;border-radius:50%;display:grid;place-items:center;box-shadow:0 2px 0 rgba(0,0,0,.2)}
+.door.missed .inside{background:#e4e1da;border-color:#b9b5aa;color:#9a968b;box-shadow:inset 0 4px 12px rgba(0,0,0,.18)}
+.door.past{cursor:default}
 .door.today .leaf{animation:pulse 1.8s infinite}
-@keyframes pulse{0%,100%{box-shadow:0 6px 0 rgba(0,0,0,.22),0 0 0 0 rgba(255,207,74,.8)}50%{box-shadow:0 6px 0 rgba(0,0,0,.22),0 0 0 10px rgba(255,207,74,0)}}
+@keyframes pulse{0%,100%{box-shadow:0 6px 0 rgba(35,50,58,.22),0 0 0 0 rgba(255,201,74,.95)}50%{box-shadow:0 6px 0 rgba(35,50,58,.22),0 0 0 12px rgba(255,201,74,0)}}
 .door.locked{cursor:not-allowed}
-.door.locked .leaf{filter:saturate(.35) brightness(.7)}
+.door.locked .leaf{filter:saturate(.55) brightness(1.1)}
 .door.locked .tag::before{content:"🔒 "}
 .door.shake{animation:shake .4s}
-@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
-.c0{--c:var(--coral)}.c1{--c:var(--teal)}.c2{--c:var(--plum)}.c3{--c:#f08a1c}.c4{--c:var(--leaf)}.c5{--c:#3b7bd8}
+@keyframes shake{25%{translate:-6px 0}75%{translate:6px 0}}
+.c0{--c:#ff6b5b;--c2:#f0483a}.c1{--c:#17b3ad;--c2:#0f948f}.c2{--c:#7b52d3;--c2:#5f38b8}
+.c3{--c:#f28a1e;--c2:#d96f08}.c4{--c:#3cb27c;--c2:#2a9363}.c5{--c:#3b7bd8;--c2:#2a5fb5}
 
-.note{text-align:center;margin-top:28px;color:#b7dadd;font-size:.92rem;line-height:1.5}
-.toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,30px);opacity:0;background:var(--paper);color:var(--ink);
-  padding:12px 18px;border-radius:14px;font-weight:700;box-shadow:0 8px 24px rgba(0,0,0,.35);transition:.3s;z-index:30;max-width:90vw;text-align:center}
+.legend{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:22px;font-size:.86rem;font-weight:700;color:#4a5a61}
+.legend i{display:inline-block;width:14px;height:14px;border-radius:5px;vertical-align:-2px;margin-right:5px}
+.note{text-align:center;margin-top:16px;color:#4a5a61;font-size:.95rem;line-height:1.5;font-weight:600}
+.linkbtn{background:none;border:0;font:inherit;font-weight:800;color:var(--plum);text-decoration:underline;cursor:pointer}
+.credits{margin-top:36px;font-size:.78rem;color:var(--muted);line-height:1.6;text-align:center}
+.credits a{color:inherit}
+.toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,30px);opacity:0;background:var(--ink);color:#fff;
+  padding:12px 18px;border-radius:14px;font-weight:700;box-shadow:0 8px 24px rgba(0,0,0,.35);transition:.3s;z-index:30;max-width:90vw;text-align:center;pointer-events:none}
 .toast.show{transform:translate(-50%,0);opacity:1}
 
-/* tarjeta */
-.overlay{position:fixed;inset:0;background:rgba(5,20,28,.78);backdrop-filter:blur(4px);z-index:20;display:none;
-  align-items:flex-start;justify-content:center;overflow-y:auto;padding:20px 12px}
+/* ---- tarjeta ---- */
+.overlay{position:fixed;inset:0;background:rgba(35,50,58,.7);backdrop-filter:blur(4px);z-index:20;display:none;align-items:flex-start;justify-content:center;overflow-y:auto;padding:20px 12px}
 .overlay.open{display:flex}
-.card{width:100%;max-width:560px;border-radius:26px;overflow:hidden;background:var(--teal);color:var(--ink);
-  box-shadow:0 20px 60px rgba(0,0,0,.5);animation:pop .45s cubic-bezier(.3,1.4,.5,1);margin:auto}
+.card{width:100%;max-width:580px;border-radius:28px;overflow:hidden;background:var(--teal);color:var(--ink);box-shadow:0 20px 60px rgba(0,0,0,.45);animation:pop .45s cubic-bezier(.3,1.4,.5,1);margin:auto}
 @keyframes pop{from{transform:scale(.7) rotate(-3deg);opacity:0}}
-.card-head{background:var(--gold);text-align:center;padding:22px 18px 16px;position:relative}
-.close{position:absolute;top:10px;right:12px;width:36px;height:36px;border-radius:50%;border:0;background:rgba(0,0,0,.12);color:var(--ink);font-size:1.3rem;cursor:pointer;font-weight:800}
-.close:hover{background:rgba(0,0,0,.22)}
-.day{display:inline-block;background:var(--ink);color:var(--gold);font-weight:800;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border-radius:99px}
-.card h2{font-family:'Fredoka',sans-serif;font-weight:700;font-size:clamp(2rem,9vw,3.1rem);line-height:1.05;margin:8px 0 6px;color:#fff;
-  -webkit-text-stroke:7px var(--ink);paint-order:stroke fill;text-transform:uppercase;letter-spacing:.01em;word-break:break-word}
-.instr{font-weight:800;font-style:italic;font-size:1.02rem}
-.chips{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-top:10px}
-.chip{background:rgba(22,50,58,.12);border-radius:99px;padding:3px 11px;font-size:.78rem;font-weight:800}
+.card-head{background:var(--gold);text-align:center;padding:22px 18px 18px;position:relative}
+.close{position:absolute;top:10px;right:12px;width:38px;height:38px;border-radius:50%;border:0;background:rgba(0,0,0,.13);color:var(--ink);font-size:1.4rem;cursor:pointer;font-weight:800}
+.close:hover{background:rgba(0,0,0,.24)}
+.day{display:inline-block;background:var(--ink);color:var(--gold);font-weight:800;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;padding:5px 13px;border-radius:99px}
+.card h2{font-family:'Fredoka',sans-serif;font-weight:700;font-size:clamp(2rem,9vw,3.2rem);line-height:1.05;margin:10px 0 8px;color:#fff;
+  -webkit-text-stroke:8px var(--ink);paint-order:stroke fill;text-transform:uppercase;word-break:break-word}
+.instr{font-weight:800;font-style:italic;font-size:1.04rem}
+.chips{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-top:11px}
+.chip{background:rgba(35,50,58,.12);border-radius:99px;padding:3px 11px;font-size:.78rem;font-weight:800}
 .card-body{padding:16px 14px 18px}
-.scene{border:4px solid #fff;border-radius:14px;padding:18px 10px;margin-bottom:14px;display:flex;flex-wrap:wrap;gap:4px 10px;justify-content:center;align-items:center;
-  font-size:clamp(2.2rem,11vw,3.4rem);line-height:1.15;min-height:170px;text-align:center}
+.photo{margin:0 0 14px}
+.photo img{display:block;width:100%;height:auto;border:4px solid #fff;border-radius:16px;background:#fff;aspect-ratio:3/2;object-fit:cover}
+.photo figcaption{font-size:.7rem;color:#06303a;opacity:.8;text-align:right;margin-top:4px;font-weight:600}
+.photo figcaption a{color:inherit}
 .qbox{background:#f6f7ff;border-radius:22px;padding:16px 18px 16px 14px}
-.qbox ol,.qbox ul{padding-left:24px;display:grid;gap:8px;font-size:1.05rem;line-height:1.38;font-weight:600}
+.qbox ol,.qbox ul{padding-left:24px;display:grid;gap:9px;font-size:1.06rem;line-height:1.4;font-weight:600}
 .qbox li::marker{color:var(--coral);font-weight:800}
-.help{margin-top:12px;background:rgba(255,255,255,.22);border-radius:16px;color:#06303a}
-.help summary{cursor:pointer;font-weight:800;padding:11px 16px;list-style:none}
+.help{margin-top:12px;background:rgba(255,255,255,.25);border-radius:16px;color:#06303a}
+.help summary{cursor:pointer;font-weight:800;padding:12px 16px;list-style:none}
 .help summary::-webkit-details-marker{display:none}
 .help summary::before{content:"💡 "}
-.help div{padding:0 16px 14px;font-weight:600;line-height:1.5;color:#06303a}
-.help b{background:#fff;border-radius:6px;padding:0 6px;margin-right:2px;display:inline-block;margin-bottom:3px}
+.help div{padding:0 16px 14px;font-weight:600;line-height:1.7}
+.help b{background:#fff;border-radius:7px;padding:1px 7px;margin-right:2px;display:inline-block}
 .actions{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
-.btn{flex:1;min-width:140px;border:0;border-radius:14px;padding:13px 16px;font:inherit;font-weight:800;font-size:1rem;cursor:pointer;
-  box-shadow:0 4px 0 rgba(0,0,0,.25);transition:transform .1s}
+.btn{flex:1;min-width:140px;border:0;border-radius:15px;padding:14px 16px;font:inherit;font-weight:800;font-size:1.02rem;cursor:pointer;box-shadow:0 4px 0 rgba(0,0,0,.25);transition:transform .1s;color:var(--ink)}
 .btn:active{transform:translateY(3px);box-shadow:0 1px 0 rgba(0,0,0,.25)}
-.btn.main{background:var(--gold);color:var(--ink)}
-.btn.sec{background:#fff;color:var(--ink)}
-.btn.main.is-done{background:var(--leaf);color:#fff}
+.btn.main{background:var(--gold)}
+.btn.sec{background:#fff}
+.btn.main.is-done{background:var(--green);color:#fff}
 footer.card-foot{text-align:center;padding:0 0 14px;font-size:.78rem;font-weight:800;letter-spacing:.14em;color:#06303a;opacity:.7}
-.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.save{padding:22px 20px;background:#fff;color:var(--ink)}
+.save h2{font-family:'Fredoka',sans-serif;font-size:1.6rem;margin-bottom:8px;-webkit-text-stroke:0;color:var(--ink);text-transform:none}
+.save p{line-height:1.5;margin:8px 0;font-weight:600}
+.save input{width:100%;font:inherit;font-weight:800;font-size:1.1rem;letter-spacing:.06em;padding:11px 13px;border:3px solid var(--ink);border-radius:12px;margin:6px 0}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
-<canvas id="snow" aria-hidden="true"></canvas>
 <main>
   <header>
-    <div class="kicker">Calendario de Adviento · Español</div>
+    <span class="bubble b1">¡Hola!</span>
+    <span class="bubble b2">¿Qué tal?</span>
+    <span class="bubble b3">¡Cuéntame!</span>
+    <div class="kicker">30 ventanas · 30 conversaciones</div>
     <h1>¡A <span>hablar!</span></h1>
-    <p class="lead">Cada día se abre una ventanita nueva con una tarea para hablar. Lee las preguntas y responde en voz alta. ¡Sin miedo a equivocarte!</p>
+    <p class="lead">Cada día se abre una ventana nueva con una tarea para hablar. Lee las preguntas, mira las fotos y responde en voz alta. ¡Sin miedo a equivocarte!</p>
+    <div class="today-chip" id="todaychip" hidden></div>
     <div class="bar">
       <div class="bar-top"><span>Tu progreso</span><span id="count">0 / 30</span></div>
       <div class="track"><div class="fill" id="fill"></div></div>
@@ -123,8 +154,15 @@ footer.card-foot{text-align:center;padding:0 0 14px;font-size:.78rem;font-weight
   </header>
 
   <section class="grid" id="grid" aria-label="Ventanas del calendario"></section>
-
+  <div class="legend">
+    <span><i style="background:var(--coral)"></i>Hoy</span>
+    <span><i style="background:var(--green)"></i>Hecha ✓</span>
+    <span><i style="background:#b9b5aa"></i>Perdida</span>
+    <span><i style="background:#8a9a9f"></i>Próximamente 🔒</span>
+  </div>
   <p class="note" id="note"></p>
+  <p class="note"><button class="linkbtn" id="savebtn">Guardar mi progreso o pasarlo a otro dispositivo</button></p>
+  <p class="credits" id="credits"></p>
 </main>
 
 <div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-labelledby="ctitle">
@@ -135,116 +173,121 @@ footer.card-foot{text-align:center;padding:0 0 14px;font-size:.78rem;font-weight
 <script>
 /* ============ AJUSTES (para la profesora) ============
    START — fecha de la ventana nº 1 (año, mes 1-12, día).
-   Para ver todas las ventanas abiertas: añade ?profe a la dirección de la página. */
+   Con ?profe al final de la dirección se abren todas las ventanas. */
 const START = { y: 2026, m: 11, d: 1 };
 
-/* ============ TAREAS ============
-   t: título · ti: instrucción · g: gramática · k: "tema" | "imagen"
-   q: preguntas · h: ayuda (palabras y estructuras) · s: escena (solo para imágenes) */
+/* t: título · ti: instrucción · g: temas · k: "tema" | "imagen"
+   q: preguntas · h: ayuda · img: foto (archivo en /img) */
 const TASKS = [
- /* --- Gerundio y futuro perfecto --- */
- {t:"Chocolate",k:"tema",g:["Presente","Estar + gerundio"],ti:"Lee las preguntas y responde.",
-  q:["¿Eres más de chocolate negro, con leche o blanco? ¿Por qué?","¿Estás comiendo algo dulce ahora? ¿Qué estás tomando?","¿Cómo prefieres el chocolate: en bombones, en tabletas, en postres o en bebidas calientes?","Si tuvieras que regalar chocolate a alguien, ¿a quién y por qué?"],
-  h:"Me gusta más… · Prefiero… · Se lo regalaría a… porque…"},
- {t:"En el café",k:"imagen",g:["Estar + gerundio"],ti:"Mira la imagen y describe qué está pasando.",
-  s:{bg:"linear-gradient(135deg,#ffe3b3,#ffb88c)",e:["☕","🧔","📖","💻","🥐","👵","🐕","🌧️"]},
-  q:["¿Dónde están las personas?","¿Qué están haciendo? Inventa una frase para cada persona.","¿Qué está pasando fuera del café?","¿Qué está tomando cada persona? ¿Qué están comiendo?","¿Quién crees que está más contento? ¿Por qué?"],
-  h:"está leyendo · está trabajando · están hablando · está bebiendo · está lloviendo"},
- {t:"Mañana a esta hora",k:"tema",g:["Futuro perfecto"],ti:"Habla de lo que habrás hecho.",
-  q:["¿Qué habrás hecho para el viernes que viene?","¿Qué cosa habrás terminado antes de las seis de la tarde de mañana?","Para el domingo, ¿a quién habrás llamado o visto?","¿Qué cosa te gustaría haber hecho antes de que acabe este mes?"],
-  h:"Para el… ya habré + participio (terminado, hecho, visto, comprado) · Antes de… habré…"},
- {t:"Mi ciudad ahora",k:"tema",g:["Estar + gerundio","Presente"],ti:"Imagina tu ciudad en este momento.",
-  q:["¿Qué está pasando ahora mismo en tu ciudad?","¿Qué están haciendo tus vecinos o tu familia en este momento?","¿Hace sol, llueve o nieva? ¿Qué está haciendo la gente en la calle?","¿Qué lugar de tu ciudad está lleno de gente ahora?"],
-  h:"ahora mismo · en este momento · la gente está + gerundio (caminando, esperando, comprando…)"},
- {t:"Plan de fin de semana",k:"tema",g:["Futuro perfecto","Futuro"],ti:"Cuenta tus planes y lo que ya habrás hecho.",
-  q:["¿Qué vas a hacer este fin de semana?","¿Qué habrás hecho antes del domingo por la noche?","¿Qué tareas de casa habrás terminado para el sábado?","Si todo sale bien, ¿qué habrás conseguido al final del fin de semana?"],
-  h:"Voy a… · El sábado haré… · Para el domingo ya habré…"},
- {t:"En el parque",k:"imagen",g:["Estar + gerundio"],ti:"Mira la imagen y describe qué están haciendo.",
-  s:{bg:"linear-gradient(135deg,#c8f2c0,#8fd9b6)",e:["🌳","🧒","🪁","🐕","🚴","⚽","🧺","🦆"]},
-  q:["¿Cuántas personas y animales hay en el parque?","¿Qué está haciendo cada uno?","¿Qué tiempo hace? ¿Es de día o de noche?","¿Qué objetos puedes ver?","¿Te gustaría estar en este parque? ¿Qué estarías haciendo?"],
-  h:"está jugando · está corriendo · están paseando · está volando · está comiendo"},
- {t:"Dentro de cinco años",k:"tema",g:["Futuro perfecto"],ti:"Mira hacia el futuro y responde.",
-  q:["Dentro de cinco años, ¿qué habrás aprendido?","¿Qué países habrás visitado?","¿Cuántos libros o películas en español habrás leído o visto?","¿Qué cosa importante habrá cambiado en tu vida?"],
-  h:"Dentro de cinco años habré… · Para entonces ya habré… · habrá cambiado"},
- {t:"Mi familia ahora",k:"tema",g:["Estar + gerundio"],ti:"Habla de tu gente en este momento.",
-  q:["¿Dónde está tu familia ahora y qué está haciendo cada persona?","¿Quién está trabajando y quién está descansando?","¿Qué están preparando para la cena?","¿Con quién estás hablando por teléfono estos días?"],
-  h:"mi madre está cocinando · mis amigos están viajando · están esperando"},
- {t:"La fiesta",k:"imagen",g:["Estar + gerundio","Futuro perfecto"],ti:"Describe la fiesta y haz predicciones.",
-  s:{bg:"linear-gradient(135deg,#ffd1f0,#c9b6ff)",e:["🎂","🎈","🕺","💃","🎁","🎶","🥂","📸"]},
-  q:["¿Qué celebran las personas? ¿Cómo lo sabes?","¿Qué están haciendo? ¿Quién está bailando, quién está sacando fotos?","¿Qué están comiendo y bebiendo?","¿Qué habrá pasado antes de la fiesta? Inventa dos cosas con «habrá»."],
-  h:"están celebrando · está bailando · Habrán comprado… · Habrán preparado…"},
- {t:"Antes de fin de año",k:"tema",g:["Futuro perfecto"],ti:"Haz tu lista de metas.",
-  q:["¿Qué metas habrás cumplido antes del 31 de diciembre?","¿Qué regalo habrás comprado para tu familia?","¿Qué cosa nueva habrás probado?","¿Cómo te sentirás cuando hayas terminado todo?"],
-  h:"Antes del 31 de diciembre habré… · Cuando haya terminado…"},
+ /* --- Familia, aspecto, carácter, profesiones --- */
+ {t:"Chocolate",k:"tema",g:["Comida","Gustos"],ti:"Lee las preguntas y responde.",
+  q:["¿Eres más de chocolate negro, con leche o blanco? ¿Por qué?","¿Cuándo comiste chocolate por última vez? ¿Dónde estabas?","¿Cómo prefieres el chocolate: en bombones, en tabletas, en postres o en bebidas calientes?","Si tuvieras que regalar chocolate a alguien, ¿a quién y por qué?"],
+  h:"Me gusta más… · Prefiero… · Se lo regalaría a… porque… · negro · con leche · blanco"},
+ {t:"Mi familia",k:"tema",g:["Familia"],ti:"Habla de tu familia.",
+  q:["¿Cuántas personas hay en tu familia? ¿Quiénes son?","¿Cómo se llaman tus padres y a qué se dedican?","¿Tienes hermanos, primos o abuelos? ¿Dónde viven?","¿Quién de tu familia es el más divertido? ¿Por qué?"],
+  h:"Mi madre se llama… · Tengo un hermano / una hermana · Mi abuelo vive en… · el/la más…"},
+ {t:"Una familia en la mesa",k:"imagen",g:["Familia","Comida"],ti:"Mira la foto y describe a las personas.",
+  img:{f:"familia-mesa.jpg",alt:"Una familia de cinco personas come en una mesa.",by:"National Cancer Institute",lic:"Dominio público",u:"https://commons.wikimedia.org/wiki/File:Family_eating_meal.jpg"},
+  q:["¿Cuántas personas hay en la foto? ¿Quiénes pueden ser: padres, hijos, abuelos?","¿Cómo es cada persona? Habla del pelo, de la ropa y de la edad.","¿Qué hay en la mesa? ¿Qué están comiendo?","¿Dónde están? ¿Es de día o de noche?","¿Cómo se sienten? ¿Están contentos?"],
+  h:"Hay… personas · Creo que son… · tiene el pelo largo/corto · lleva una camisa · están comiendo · están hablando"},
+ {t:"Cómo soy",k:"tema",g:["Aspecto físico"],ti:"Describe tu aspecto.",
+  q:["¿Cómo eres físicamente? Habla de tu altura, tu pelo y tus ojos.","¿A quién de tu familia te pareces?","¿Qué ropa te gusta llevar?","¿Qué cosa de tu aspecto te gusta más?"],
+  h:"Soy alto/a · bajo/a · delgado/a · Tengo el pelo… · los ojos… · Me parezco a… · Llevo…"},
+ {t:"En la cocina",k:"imagen",g:["Aspecto físico","Personas"],ti:"Mira la foto y describe a las personas.",
+  img:{f:"cocina-gente.jpg",alt:"Varias personas, entre ellas una mujer rubia y un bebé, en una cocina.",by:"Infrogmation of New Orleans",lic:"CC BY 2.0",u:"https://commons.wikimedia.org/wiki/File:New_Year_Kitchen_New_Orleans.jpg"},
+  q:["¿Cuántas personas ves? ¿Cómo son? Descríbelas.","¿Qué ropa llevan?","¿Qué están haciendo?","¿Qué cosas ves en la cocina?","¿Cuál es la relación entre estas personas, crees tú? Inventa una historia."],
+  h:"rubia · morena · de pelo largo · lleva un vestido rojo · está cocinando · está sonriendo · un bebé"},
+ {t:"Mi carácter",k:"tema",g:["Carácter"],ti:"Habla de cómo eres por dentro.",
+  q:["¿Cómo es tu carácter? Di tres palabras.","¿Eres más tranquilo/a o más nervioso/a? ¿Por qué?","¿Qué cualidad es más importante en un amigo?","¿Qué defecto tienes?"],
+  h:"Soy simpático/a · trabajador/a · tímido/a · divertido/a · a veces soy un poco… · perezoso/a · generoso/a"},
+ {t:"Mi mejor amigo/a",k:"tema",g:["Carácter","Aspecto físico"],ti:"Describe a una persona importante para ti.",
+  q:["¿Quién es tu mejor amigo o amiga? ¿Cómo se llama?","¿Cómo es físicamente?","¿Cómo es su carácter?","¿Qué hacéis juntos? ¿Qué os gusta hacer?"],
+  h:"Mi mejor amigo/a se llama… · Es… y tiene… · Nos gusta… · Siempre…"},
+ {t:"Profesiones",k:"tema",g:["Profesiones"],ti:"Habla de los trabajos.",
+  q:["¿A qué te dedicas? ¿Trabajas o estudias?","¿A qué se dedican las personas de tu familia?","¿Dónde trabajan? ¿Les gusta su trabajo?","¿Qué profesión no te gustaría tener? ¿Por qué?"],
+  h:"Soy… · Trabajo en… · Mi padre es médico/a · profesor/a · ingeniero/a · cocinero/a · vendedor/a"},
+ {t:"En la clase",k:"imagen",g:["Profesiones"],ti:"Mira la foto y describe qué pasa.",
+  img:{f:"profesora.jpg",alt:"Una profesora explica delante de una pizarra a sus estudiantes.",by:"Harrison Keely",lic:"CC BY 4.0",u:"https://commons.wikimedia.org/wiki/File:A_college_professor_teaching_in_a_university_classroom_full_of_students_in_Tennessee,_United_States_01.jpg"},
+  q:["¿Dónde están las personas?","¿Qué profesión tiene la mujer? ¿Cómo lo sabes?","¿Qué está haciendo ella? ¿Qué están haciendo los estudiantes?","¿Cómo es la mujer? Descríbela.","¿Te gusta estudiar así? ¿Por qué?"],
+  h:"una profesora · una pizarra · está explicando · están escuchando · está escribiendo · los estudiantes"},
+ {t:"Mi trabajo ideal",k:"tema",g:["Profesiones"],ti:"Habla de tu futuro.",
+  q:["¿Qué querías ser de pequeño/a?","¿Qué profesión te gustaría tener? ¿Por qué?","¿Dónde te gustaría trabajar?","¿Qué cosas buenas y malas tiene ese trabajo?"],
+  h:"Me gustaría ser… · Quiero trabajar en… · Es un trabajo… (interesante, difícil, bien pagado)"},
 
- /* --- Pretérito indefinido --- */
- {t:"Ayer",k:"tema",g:["Pretérito indefinido"],ti:"Cuenta qué hiciste ayer.",
+ /* --- Rutina, gustos, tiempo libre --- */
+ {t:"Mi rutina",k:"tema",g:["Rutina diaria"],ti:"Cuenta tu día normal.",
+  q:["¿A qué hora te levantas y qué haces por la mañana?","¿Qué haces por la tarde?","¿A qué hora cenas y a qué hora te acuestas?","¿Qué parte del día te gusta más?"],
+  h:"me levanto · me ducho · desayuno · voy a… · vuelvo a casa · ceno · me acuesto · a las siete y media"},
+ {t:"Lunes y domingo",k:"tema",g:["Rutina diaria"],ti:"Compara dos días.",
+  q:["¿Cómo es tu lunes? ¿Qué haces?","¿Y tu domingo? ¿Qué haces diferente?","¿A qué hora te levantas cada día?","¿Qué día de la semana te gusta más? ¿Por qué?"],
+  h:"los lunes · los domingos · temprano · tarde · en cambio · pero"},
+ {t:"Me gusta, no me gusta",k:"tema",g:["Gustar"],ti:"Habla de tus gustos.",
+  q:["¿Qué te gusta hacer en tu tiempo libre?","¿Qué no te gusta nada?","¿Qué música te gusta? ¿Qué películas te encantan?","¿Qué le gusta hacer a tu mejor amigo/a?"],
+  h:"Me gusta + infinitivo · Me gustan + plural · No me gusta nada · Me encanta · A mi amigo/a le gusta…"},
+ {t:"En el parque",k:"imagen",g:["Tiempo libre","Gustar"],ti:"Mira la foto y describe qué pasa.",
+  img:{f:"parque.jpg",alt:"Un grupo de personas salta a la vez en un parque.",by:"Evil Erin",lic:"CC BY 2.0",u:"https://commons.wikimedia.org/wiki/File:Family_jump.jpg"},
+  q:["¿Cuántas personas hay? ¿Qué están haciendo?","¿Dónde están? ¿Qué tiempo hace?","¿Qué ropa llevan?","¿Crees que son una familia o amigos? ¿Por qué?","¿Te gusta hacer cosas así con tu familia o amigos?"],
+  h:"están saltando · están riendo · hace sol · un parque · la hierba · Me gusta… con mis amigos"},
+
+ /* --- Ciudad y calle --- */
+ {t:"Mi ciudad",k:"tema",g:["Ciudad"],ti:"Habla de tu ciudad.",
+  q:["¿Cómo se llama tu ciudad? ¿Es grande o pequeña?","¿Qué lugares hay en ella: parques, museos, tiendas?","¿Qué es lo mejor de tu ciudad? ¿Y lo peor?","¿Recomiendas visitarla? ¿Qué lugar es imprescindible?"],
+  h:"Mi ciudad es… · Hay un/una… · No hay… · Lo mejor es… · Te recomiendo visitar…"},
+ {t:"En la calle",k:"imagen",g:["Ciudad","Calle"],ti:"Mira la foto y describe la calle.",
+  img:{f:"calle.jpg",alt:"Personas caminan por una calle estrecha de una ciudad antigua.",by:"Fons Heijnsbroek",lic:"CC0",u:"https://commons.wikimedia.org/wiki/File:People_are_walking_and_standing_in_the_street_Zeedijk_in_Amsterdam_old_city;_free_download_photo_in_high_resolutions_by_Fons_Heijnbroek,_street_photography_The_Netherlands,_CCO.tif"},
+  q:["¿Cómo es la calle: ancha o estrecha, nueva o antigua?","¿Qué edificios y tiendas ves?","¿Qué están haciendo las personas?","¿Qué tiempo hace? ¿Qué ropa llevan?","¿Te gustaría vivir en una calle así? ¿Por qué?"],
+  h:"un edificio · una tienda · una farola · la gente camina · está paseando · a la derecha · a la izquierda"},
+ {t:"¿Cómo llego a…?",k:"tema",g:["Ciudad","Direcciones"],ti:"Explica el camino.",
+  q:["Explica cómo ir de tu casa a la parada de autobús o al metro.","¿Dónde está el supermercado más cercano a tu casa?","¿Cómo se va de tu casa al centro de la ciudad?","Un turista pregunta: «¿Dónde está la farmacia?». ¿Qué le contestas?"],
+  h:"Sigue recto · Gira a la derecha / a la izquierda · Cruza la calle · está al lado de… · enfrente de… · cerca / lejos"},
+ {t:"Mi barrio",k:"tema",g:["Ciudad","Calle"],ti:"Habla del lugar donde vives.",
+  q:["¿Cómo es tu barrio? ¿Es tranquilo o ruidoso?","¿Qué hay cerca de tu casa?","¿Qué haces normalmente en tu barrio?","¿Cómo son tus vecinos?"],
+  h:"Vivo en el barrio de… · cerca de mi casa hay… · Es tranquilo · ruidoso · Mis vecinos son…"},
+
+ /* --- Vivienda y comida --- */
+ {t:"Mi casa",k:"tema",g:["Vivienda"],ti:"Describe tu casa.",
+  q:["¿Vives en una casa o en un piso? ¿Es grande o pequeño?","¿Cuántas habitaciones tiene? ¿Cuáles son?","¿Con quién vives?","¿Qué es lo que más te gusta de tu casa?"],
+  h:"Vivo en un piso · una casa · Tiene… habitaciones · el salón · la cocina · el baño · el dormitorio · el balcón"},
+ {t:"Una cocina",k:"imagen",g:["Vivienda"],ti:"Mira la foto y describe el lugar.",
+  img:{f:"cocina-moderna.jpg",alt:"Una cocina moderna y luminosa de un apartamento, con salón.",by:"Chris Olszewski",lic:"CC BY-SA 4.0",u:"https://commons.wikimedia.org/wiki/File:Kitchen,_Interior_of_apartment_in_Brisbane,_2025,_03.jpg"},
+  q:["¿Qué habitaciones ves?","¿Qué muebles hay? ¿Dónde están?","¿De qué colores es? ¿Es grande o pequeña?","¿Te gusta esta casa? ¿Cómo es diferente de la tuya?","¿Quién crees que vive aquí?"],
+  h:"Hay una mesa · una nevera · un sofá · una lámpara · está en el centro · a la izquierda · al lado de… · debajo de… · encima de…"},
+ {t:"Mis muebles",k:"tema",g:["Vivienda"],ti:"Cuenta dónde están las cosas.",
+  q:["¿Qué muebles hay en tu salón? ¿Dónde está cada uno?","¿Qué hay encima de tu mesa, ahora mismo?","¿Qué hay debajo de tu cama?","¿Qué mueble te gustaría comprar?"],
+  h:"el sofá · la estantería · el armario · encima de · debajo de · al lado de · entre · delante de · detrás de"},
+ {t:"Mi casa ideal",k:"tema",g:["Vivienda"],ti:"Imagina tu casa de ensueño.",
+  q:["¿Dónde estaría tu casa ideal: en la ciudad, en la playa, en la montaña?","¿Cuántas habitaciones tendría? ¿Cómo sería?","¿Qué cosas especiales tendría: piscina, jardín, cine?","¿Con quién te gustaría vivir en ella?"],
+  h:"Me gustaría vivir en… · Tendría… · Habría… · sería muy… · con jardín · con vistas al mar"},
+ {t:"Mi plato favorito",k:"tema",g:["Comida"],ti:"Habla de la comida que te gusta.",
+  q:["¿Cuál es tu plato favorito? ¿Qué lleva?","¿Quién lo prepara mejor en tu familia?","¿Qué comida no te gusta nada?","¿Cocinas tú? ¿Qué sabes cocinar?"],
+  h:"Mi plato favorito es… · lleva carne / pescado / verdura · está muy rico · Sé cocinar… · No soporto…"},
+ {t:"En el mercado",k:"imagen",g:["Comida","Compras"],ti:"Mira la foto y describe qué pasa.",
+  img:{f:"mercado.jpg",alt:"Una vendedora atiende un puesto de fruta con muchos colores.",by:"Adam Jones",lic:"CC BY 2.0",u:"https://commons.wikimedia.org/wiki/File:Woman_Vendor_at_Fruit_Stall_-_Thursday_Market_-_Narvarte_-_Mexico_City_-_Mexico.jpg"},
+  q:["¿Dónde está la mujer? ¿Qué profesión tiene?","¿Qué frutas y verduras ves? ¿De qué color son?","¿Qué está haciendo la mujer?","¿Qué comprarías tú en este puesto?","¿Compras en el mercado o en el supermercado? ¿Por qué?"],
+  h:"un puesto · la vendedora · las manzanas · las naranjas · las sandías · está preparando · Compraría…"},
+ {t:"En la terraza",k:"imagen",g:["Comida","Personas"],ti:"Mira la foto y describe qué pasa.",
+  img:{f:"terraza.jpg",alt:"Personas sentadas en la terraza de un café.",by:"Joe Mabel",lic:"CC BY-SA 4.0",u:"https://commons.wikimedia.org/wiki/File:Arthur_Avenue_41_-_terrace_of_Noya_Cafe.jpg"},
+  q:["¿Dónde están las personas?","¿Qué están tomando o comiendo?","¿Cómo son? ¿Qué ropa llevan?","¿De qué crees que están hablando?","¿Qué pedirías tú en este café?"],
+  h:"un café · una terraza · están sentados · están tomando · Yo pediría… · un café con leche · un zumo · una tostada"},
+ {t:"De noche en la plaza",k:"imagen",g:["Comida","Ciudad"],ti:"Mira la foto y describe qué pasa.",
+  img:{f:"noche.jpg",alt:"Gente cena en mesas al aire libre por la noche.",by:"Daniel Case",lic:"CC BY-SA 3.0",u:"https://commons.wikimedia.org/wiki/File:Diners_at_street_cafe_in_Plaza_de_la_Solidaridad,_Mexico_City.jpg"},
+  q:["¿Qué hora es? ¿Es de día o de noche?","¿Cuántas personas hay? ¿Qué están haciendo?","¿Qué ambiente hay: tranquilo, divertido, ruidoso?","¿Qué cosas ves en la imagen?","¿Te gustaría cenar aquí? ¿Qué pedirías?"],
+  h:"de noche · las mesas · hay mucha gente · está cenando · el ambiente es… · Me gustaría…"},
+
+ {t:"Vacaciones ideales",k:"tema",g:["Tiempo libre"],ti:"Imagina tus vacaciones de ensueño.",
+  q:["¿Adónde te gustaría ir de vacaciones? ¿Por qué?","¿Con quién irías? ¿Cómo viajarías?","¿Dónde te quedarías: en un hotel, en un camping, en casa de amigos?","¿Qué harías allí cada día?"],
+  h:"Me gustaría ir a… · Iría con… · Viajaría en avión / en tren · Me quedaría en… · Haría…"},
+
+ /* --- Pasado: indefinido (primeros pasos) e imperfecto (al final) --- */
+ {t:"Ayer",k:"tema",g:["Pasado"],ti:"Cuenta qué hiciste ayer.",
   q:["¿A qué hora te levantaste ayer y qué desayunaste?","¿Adónde fuiste? ¿Con quién hablaste?","¿Qué comiste y qué cenaste?","¿Qué fue lo mejor de ayer?"],
-  h:"me levanté · desayuné · comí · fui · hablé · vi · hice · volví · ayer · anoche · a las…"},
- {t:"El fin de semana pasado",k:"tema",g:["Pretérito indefinido"],ti:"Cuenta tu fin de semana.",
-  q:["¿Qué hiciste el sábado por la mañana y por la tarde?","¿Saliste con alguien? ¿Adónde fueron?","¿Qué compraste o qué cocinaste?","¿Qué hiciste el domingo?","¿Fue un buen fin de semana? ¿Por qué?"],
+  h:"me levanté · desayuné · comí · fui · hablé · vi · hice · volví · ayer · anoche"},
+ {t:"El fin de semana pasado",k:"tema",g:["Pasado"],ti:"Cuenta tu fin de semana.",
+  q:["¿Qué hiciste el sábado?","¿Saliste con alguien? ¿Adónde fuisteis?","¿Qué compraste o qué cocinaste?","¿Qué hiciste el domingo?","¿Fue un buen fin de semana? ¿Por qué?"],
   h:"el sábado · el domingo · por la mañana · después · luego · al final · fue + adjetivo"},
- {t:"En el restaurante",k:"imagen",g:["Pretérito indefinido"],ti:"Mira la imagen e imagina qué pasó antes.",
-  s:{bg:"linear-gradient(135deg,#ffe0a8,#f4a261)",e:["🍝","🍷","🧔","🍰","👫","🧾","🕯️","🥖"]},
-  q:["¿Qué pidieron las personas?","¿Cuánto tiempo esperaron la comida?","¿Qué pasó antes de llegar al restaurante? Inventa dos cosas.","¿Quién pagó la cuenta?","¿Qué dijo el camarero?"],
-  h:"pidieron · esperaron · llegaron · pagó · dijo · comieron · bebieron · reservaron"},
- {t:"Mis vacaciones",k:"tema",g:["Pretérito indefinido"],ti:"Cuenta tus últimas vacaciones.",
-  q:["¿Adónde fuiste en tus últimas vacaciones?","¿Cómo viajaste y con quién?","¿Qué lugares visitaste?","¿Qué comiste? ¿Qué compraste?","¿Qué fue lo más divertido?"],
-  h:"fui · viajé · visité · vi · probé · compré · conocí · me quedé en…"},
- {t:"El mejor regalo",k:"tema",g:["Pretérito indefinido"],ti:"Habla de un regalo especial.",
-  q:["¿Cuál fue el mejor regalo que recibiste?","¿Quién te lo regaló y cuándo?","¿Qué hiciste cuando lo abriste?","¿Qué regalo hiciste tú que gustó mucho?"],
-  h:"me regaló · lo abrí · me encantó · me puse muy contento/a · le di…"},
- {t:"En el mercado",k:"imagen",g:["Pretérito indefinido"],ti:"Mira la imagen y cuenta qué pasó esta mañana.",
-  s:{bg:"linear-gradient(135deg,#fff1a8,#a8e6a3)",e:["🍎","🥕","🧀","🐟","🧺","👩","💶","🌻"]},
-  q:["¿Qué compró la persona?","¿Con quién habló? ¿Qué le preguntó?","¿Cuánto pagó?","¿Qué olvidó comprar?","¿Qué hizo después?"],
-  h:"compró · preguntó · pagó · olvidó · llevó · regateó · salió"},
- {t:"Un viaje inolvidable",k:"tema",g:["Pretérito indefinido"],ti:"Cuenta un viaje que te marcó.",
-  q:["¿Cuándo y adónde viajaste?","¿Qué pasó el primer día?","¿A quién conociste?","¿Hubo algún problema? ¿Cómo lo resolviste?","¿Volverías? ¿Por qué?"],
-  h:"el primer día · de repente · perdí · encontré · conocí · tuve que… · pude…"},
- {t:"Una película o un libro",k:"tema",g:["Pretérito indefinido"],ti:"Resume una historia que te gustó.",
-  q:["¿Qué película vista o libro leído te gustó mucho?","¿Quién fue el protagonista?","¿Qué le pasó? Cuéntalo con tres frases.","¿Cómo terminó la historia?"],
-  h:"empezó · pasó · murió · se enamoró · descubrió · terminó · al final"},
- {t:"Una historia misteriosa",k:"imagen",g:["Pretérito indefinido"],ti:"Mira la imagen e inventa una historia.",
-  s:{bg:"linear-gradient(135deg,#2b2d5b,#6c4a9e)",e:["🏚️","🌕","🗝️","🦉","🕯️","🚪","👻","🔦"]},
-  q:["¿Quién llegó a la casa y por qué?","¿Qué encontró dentro?","¿Qué oyó? ¿Qué vio?","¿Qué hizo entonces?","¿Cómo terminó la noche?"],
-  h:"llegó · abrió · encontró · oyó · vio · corrió · escondió · salió"},
- {t:"Hoy, ayer y mañana",k:"tema",g:["Mezcla de tiempos"],ti:"Usa tres tiempos distintos.",
-  q:["¿Qué estás haciendo ahora mismo en tu vida (estudios, trabajo)?","¿Qué hiciste esta semana que fue importante?","¿Qué habrás hecho para finales de este mes?","Une las tres ideas en una pequeña historia."],
-  h:"estoy + gerundio · ayer / la semana pasada + indefinido · para finales de… habré…"},
- {t:"Una celebración",k:"tema",g:["Pretérito indefinido"],ti:"Cuenta cómo celebraste algo.",
-  q:["¿Qué celebraste la última vez? ¿Dónde?","¿Quién vino y qué hicieron?","¿Qué comisteis y qué bebisteis?","¿Cómo terminó el día?"],
-  h:"celebramos · vinieron · bailamos · cantamos · brindamos · nos reímos · volvimos"},
- {t:"Mi último cumpleaños",k:"tema",g:["Pretérito indefinido"],ti:"Cuenta tu último cumpleaños.",
-  q:["¿Cuándo fue tu último cumpleaños y cuántos años cumpliste?","¿Cómo lo pasaste? ¿Con quién?","¿Qué te regalaron?","¿Qué sorpresa tuviste?","¿Qué quieres hacer en el próximo?"],
-  h:"cumplí… años · lo celebré · me regalaron · me sorprendió · me felicitaron"},
-
- /* --- Pretérito imperfecto (al final) --- */
- {t:"Cuando era niño/a",k:"tema",g:["Pretérito imperfecto"],ti:"Habla de tu infancia.",
-  q:["¿Cómo eras de pequeño/a?","¿A qué jugabas con tus amigos?","¿Qué te gustaba comer? ¿Qué no soportabas?","¿Qué querías ser de mayor?"],
-  h:"era · jugaba · tenía · me gustaba · quería · vivía · de pequeño/a"},
- {t:"La casa de mi infancia",k:"tema",g:["Pretérito imperfecto"],ti:"Describe un lugar del pasado.",
-  q:["¿Dónde vivías cuando eras pequeño/a?","¿Cómo era tu casa? ¿Cuántas habitaciones tenía?","¿Cuál era tu lugar favorito de la casa?","¿Quién vivía contigo?"],
-  h:"vivía · era grande/pequeña · tenía · había · estaba cerca de…"},
- {t:"La escuela",k:"tema",g:["Pretérito imperfecto"],ti:"Recuerda cómo eran tus días en la escuela.",
-  q:["¿Cómo era un día normal en la escuela?","¿Qué asignaturas te gustaban más?","¿Cómo se llamaba tu profesor/a favorito/a? ¿Cómo era?","¿Qué hacías en el recreo?"],
-  h:"todos los días · siempre · a veces · solía… · me levantaba · íbamos"},
- {t:"Una foto antigua",k:"imagen",g:["Pretérito imperfecto"],ti:"Mira la imagen y describe cómo era antes.",
-  s:{bg:"linear-gradient(135deg,#e9dcc3,#bfa57a)",e:["📷","👵","👴","🏡","🐓","🚲","🌻","🧸"]},
-  q:["¿Quiénes eran las personas de la foto?","¿Cómo eran? ¿Qué llevaban puesto?","¿Dónde vivían? ¿A qué se dedicaban?","¿Qué hacían todos los domingos?","¿Qué tiempo hacía ese día?"],
-  h:"eran · llevaba · vivían · trabajaba · hacía sol · cada domingo"},
- {t:"Antes y ahora",k:"tema",g:["Imperfecto","Presente"],ti:"Compara el pasado con el presente.",
-  q:["¿Qué cosas hacías antes que ya no haces?","¿Cómo era tu ciudad hace diez años? ¿Y cómo es ahora?","¿Qué costumbres tenías antes y cuáles tienes ahora?","¿Qué echas de menos?"],
-  h:"antes · ahora · ya no · todavía · solía + infinitivo · echo de menos…"},
- {t:"Un día de lluvia",k:"imagen",g:["Imperfecto","Indefinido"],ti:"Mira la imagen y cuenta lo que pasó.",
-  s:{bg:"linear-gradient(135deg,#b9cfe6,#7f9bc4)",e:["🌧️","☂️","🚌","🧍","🐈","🏃","📱","🚕"]},
-  q:["¿Qué tiempo hacía? ¿Qué hacía la gente en la calle?","¿Qué llevaba cada persona?","¿Qué pasó de repente?","¿Qué hizo la persona de la imagen entonces?"],
-  h:"Llovía · hacía frío · estaba esperando… cuando de repente… · decidió · tomó"},
- {t:"Estaba… cuando…",k:"tema",g:["Imperfecto","Indefinido"],ti:"Cuenta qué pasó mientras hacías otra cosa.",
-  q:["¿Qué estabas haciendo cuando sonó el teléfono por última vez?","¿Qué pasó mientras dormías, cocinabas o caminabas?","Cuenta una vez que perdiste algo importante: ¿qué estabas haciendo?","¿Qué estabas pensando cuando tomaste una decisión importante?"],
-  h:"Estaba + gerundio cuando + indefinido · Mientras… · De repente…"},
- {t:"Mi gran aventura",k:"tema",g:["Todos los tiempos"],ti:"¡Último día! Cuenta una historia completa.",
-  q:["Cuenta una aventura real o inventada: ¿cómo eras y qué hacías antes de que empezara?","¿Qué pasó? Usa al menos tres verbos en indefinido.","¿Qué estaba pasando alrededor mientras tanto?","¿Cómo habrá cambiado tu vida para dentro de un año?","¡Felicidades! ¿Qué fue lo mejor de este calendario?"],
-  h:"Antes… (imperfecto) · De repente… (indefinido) · Mientras… (estaba + gerundio) · Dentro de un año habré… (futuro perfecto)"}
+ {t:"Cuando era pequeño/a",k:"tema",g:["Infancia"],ti:"¡Último día! Recuerda tu infancia.",
+  q:["¿Dónde vivías cuando eras pequeño/a? ¿Cómo era tu casa?","¿Cómo eras tú? ¿A qué jugabas con tus amigos?","¿Qué te gustaba comer? ¿Qué no te gustaba?","¿Qué querías ser de mayor?","¡Felicidades! ¿Qué fue lo mejor de este calendario?"],
+  h:"era · vivía · tenía · jugaba · me gustaba · quería ser · de pequeño/a · antes"}
 ];
 
 /* ============ Lógica ============ */
@@ -252,97 +295,133 @@ const KEY = "adviento-hablar-v1";
 const $ = s => document.querySelector(s);
 const profe = /[?&]profe\b/.test(location.search);
 const startDate = new Date(START.y, START.m - 1, START.d);
-const todayNum = () => {
-  const now = new Date(), t0 = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-  return Math.round((t0 - startDate) / 864e5) + 1;
-};
-let done = new Set();
-try { done = new Set(JSON.parse(localStorage.getItem(KEY) || "[]")); } catch(e) {}
-const save = () => { try { localStorage.setItem(KEY, JSON.stringify([...done])); } catch(e) {} };
 const MESES = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
-const unlocked = n => profe || n <= todayNum();
-const dateOf = n => { const d = new Date(startDate); d.setDate(d.getDate() + n - 1); return d; };
+const ICONS = {"Comida":"🍽️","Familia":"👪","Aspecto físico":"👀","Personas":"👀","Carácter":"😊","Profesiones":"💼","Rutina diaria":"⏰","Gustar":"❤️","Tiempo libre":"🎈","Ciudad":"🏙️","Vivienda":"🛋️","Pasado":"⏪","Infancia":"🧸"};
+const iconOf = t => ICONS[t.g[0]] || "💬";
 const esc = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 
-function toast(msg){ const t=$("#toast"); t.textContent=msg; t.classList.add("show"); clearTimeout(toast.id); toast.id=setTimeout(()=>t.classList.remove("show"),2600); }
+/* progreso: se guarda en este navegador (localStorage) */
+let done = new Set(), canSave = true;
+try { done = new Set(JSON.parse(localStorage.getItem(KEY) || "[]")); } catch(e) { canSave = false; }
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify([...done])); } catch(e) { canSave = false; } };
+try { navigator.storage && navigator.storage.persist && navigator.storage.persist(); } catch(e) {}
+
+const todayNum = () => {
+  const fake = /[?&]hoy=(\d{4})-(\d\d)-(\d\d)/.exec(location.search);  // ?hoy=2026-11-03 — para probar
+  const now = fake ? new Date(+fake[1], +fake[2]-1, +fake[3]) : new Date(), t0 = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  return Math.round((t0 - startDate) / 864e5) + 1;
+};
+const dateOf = n => { const d = new Date(startDate); d.setDate(d.getDate() + n - 1); return d; };
+const fmt = n => { const d = dateOf(n); return d.getDate() + " de " + MESES[d.getMonth()]; };
+/* estado de una ventana: future | today | past (profe: siempre abierta) */
+const stateOf = n => { const c = todayNum(); return n > c ? "future" : n === c ? "today" : "past"; };
+const canOpen = n => profe || stateOf(n) === "today";
+
+function toast(msg){ const t=$("#toast"); t.textContent=msg; t.classList.add("show"); clearTimeout(toast.id); toast.id=setTimeout(()=>t.classList.remove("show"),2800); }
 
 function render(){
   const cur = todayNum();
   $("#grid").innerHTML = TASKS.map((task,i)=>{
-    const n=i+1, open=unlocked(n), d=dateOf(n);
-    const cls=["door","c"+(i%6), done.has(n)?"done":"", !open?"locked":"", n===cur?"today":""].join(" ");
-    return `<button class="${cls}" data-n="${n}" aria-label="Ventana ${n}${open?"":", bloqueada hasta el "+d.getDate()+" de "+MESES[d.getMonth()]}">
-      <div class="inside">${done.has(n)?"🌟":"🎁"}</div>
-      <div class="leaf"><span class="n">${n}</span><span class="tag">${open?"":d.getDate()+" "+MESES[d.getMonth()].slice(0,3)}</span></div></button>`;
+    const n=i+1, st=stateOf(n), isDone=done.has(n);
+    const past = st==="past" && !profe;
+    const cls=["door","c"+(i%6), st==="today"?"today":"", st==="future"&&!profe?"locked":"", past?"past":"",
+               past&&isDone?"done":"", past&&!isDone?"missed":"", canOpen(n)?"open-now":"", profe&&isDone?"done":""].join(" ");
+    const label = st==="future"&&!profe ? `Ventana ${n}, se abre el ${fmt(n)}` : past ? `Ventana ${n}, ${isDone?"hecha":"perdida"}` : `Abrir ventana ${n}`;
+    const inside = past ? (isDone ? `${iconOf(task)}<small>¡Hecha!</small>` : `—<small>Perdida</small>`) : `${iconOf(task)}`;
+    const tag = st==="future"&&!profe ? dateOf(n).getDate()+" "+MESES[dateOf(n).getMonth()].slice(0,3) : "";
+    return `<button class="${cls}" data-n="${n}" aria-label="${label}">
+      <div class="inside">${inside}</div>
+      <div class="leaf"><span class="n">${n}</span><span class="tag">${tag}</span></div></button>`;
   }).join("");
   $("#count").textContent = done.size + " / " + TASKS.length;
   $("#fill").style.width = (done.size / TASKS.length * 100) + "%";
+  const chip = $("#todaychip");
+  if (cur >= 1 && cur <= TASKS.length) { chip.hidden=false; chip.textContent = `Hoy es el día ${cur}: ¡abre la ventana ${cur}!`; } else chip.hidden = true;
   let note;
   if (profe) note = "Modo profesora: todas las ventanas están abiertas.";
   else if (cur < 1) note = `El calendario empieza el ${START.d} de ${MESES[START.m-1]}. ¡Hasta entonces!`;
-  else if (cur >= TASKS.length) note = "¡Todas las ventanas están abiertas! Puedes volver a cualquiera.";
-  else note = "Cada día se abre una ventana nueva. Las anteriores siempre se pueden repetir.";
+  else if (cur > TASKS.length) note = "¡El calendario ha terminado! Gracias por hablar tanto 🎉";
+  else note = "Cada día solo se abre la ventana de hoy. Las ventanas de días pasados se cierran, así que ¡no las dejes para mañana!";
+  if (!canSave) note += " (Tu navegador no deja guardar el progreso.)";
   $("#note").textContent = note;
 }
 
 function openCard(n){
   const t = TASKS[n-1];
-  const scene = t.s ? `<div class="scene" style="background:${t.s.bg}" role="img" aria-label="Imagen de la tarea">${t.s.e.map(e=>`<span>${e}</span>`).join("")}</div>` : "";
+  const photo = t.img ? `<figure class="photo"><img src="img/${t.img.f}" alt="${esc(t.img.alt)}" loading="lazy">
+      <figcaption>Foto: ${esc(t.img.by)} · ${esc(t.img.lic)} · <a href="${t.img.u}" target="_blank" rel="noopener">Wikimedia Commons</a></figcaption></figure>` : "";
   const list = t.k==="imagen" ? "ol" : "ul";
   $("#card").innerHTML = `
     <div class="card-head">
       <button class="close" aria-label="Cerrar" id="x">×</button>
-      <span class="day">Día ${n} · ${dateOf(n).getDate()} de ${MESES[dateOf(n).getMonth()]}</span>
+      <span class="day">Día ${n} · ${fmt(n)}</span>
       <h2 id="ctitle">${esc(t.t)}</h2>
       <p class="instr">${esc(t.ti)}</p>
       <div class="chips">${t.g.map(g=>`<span class="chip">${esc(g)}</span>`).join("")}</div>
     </div>
     <div class="card-body">
-      ${scene}
+      ${photo}
       <div class="qbox"><${list}>${t.q.map(q=>`<li>${esc(q)}</li>`).join("")}</${list}></div>
       <details class="help"><summary>Ayuda: palabras y estructuras</summary><div>${t.h.split(" · ").map(w=>`<b>${esc(w)}</b>`).join(" ")}</div></details>
       <div class="actions">
-        <button class="btn main ${done.has(n)?"is-done":""}" id="ok">${done.has(n)?"✓ ¡Hecho!":"¡Ya lo he dicho!"}</button>
-        ${n<TASKS.length && unlocked(n+1)?`<button class="btn sec" id="next">Siguiente →</button>`:""}
+        <button class="btn main ${done.has(n)?"is-done":""}" id="ok">${done.has(n)?"✓ ¡Hecha!":"¡Ya lo he dicho!"}</button>
+        ${profe && n<TASKS.length ? `<button class="btn sec" id="next">Siguiente →</button>`:""}
       </div>
     </div>
     <footer class="card-foot">¡A HABLAR!</footer>`;
-  $("#overlay").classList.add("open");
-  document.body.style.overflow="hidden";
-  $("#overlay").scrollTop=0;
+  show();
   $("#x").onclick=closeCard;
   $("#ok").onclick=()=>{
-    if(done.has(n)){done.delete(n);} else {done.add(n); toast("¡Muy bien! 🎉 ¡Hasta mañana!");}
+    if(done.has(n)){ done.delete(n); } else { done.add(n); toast("¡Muy bien! 🎉 Hasta mañana."); }
     save(); render(); openCard(n);
   };
   const nx=$("#next"); if(nx) nx.onclick=()=>openCard(n+1);
 }
+
+/* ---- guardar / restaurar progreso con un código ---- */
+const toCode = () => { let m=0; done.forEach(n=>m+=2**(n-1)); return "HABLA-"+m.toString(36).toUpperCase(); };
+function fromCode(s){
+  const m=/^HABLA-([0-9A-Z]{1,8})$/.exec(s.trim().toUpperCase()); if(!m) return null;
+  const v=parseInt(m[1],36); if(!(v>=0 && v<2**TASKS.length)) return null;
+  const r=new Set(); for(let i=0;i<TASKS.length;i++) if(Math.floor(v/2**i)%2) r.add(i+1); return r;
+}
+function openSave(){
+  $("#card").innerHTML = `<div class="save">
+    <button class="close" aria-label="Cerrar" id="x" style="position:static;float:right">×</button>
+    <h2>Mi progreso</h2>
+    <p>Tu progreso se guarda solo en este navegador. Para seguir en otro móvil u ordenador, copia este código y pégalo allí:</p>
+    <input id="mycode" readonly value="${toCode()}">
+    <button class="btn main" id="copy" style="margin:6px 0 14px;width:100%">Copiar mi código</button>
+    <p><b>¿Tienes un código?</b> Pégalo aquí:</p>
+    <input id="incode" placeholder="HABLA-…">
+    <button class="btn sec" id="load" style="margin-top:6px;width:100%;border:3px solid var(--ink)">Cargar el código</button>
+  </div>`;
+  show(); $("#x").onclick=closeCard;
+  $("#copy").onclick=()=>{ const i=$("#mycode"); i.select(); try{navigator.clipboard.writeText(i.value);}catch(e){document.execCommand("copy");} toast("Código copiado ✓"); };
+  $("#load").onclick=()=>{ const r=fromCode($("#incode").value); if(!r){toast("Ese código no es válido");return;}
+    r.forEach(n=>done.add(n)); save(); render(); closeCard(); toast("Progreso cargado ✓"); };
+}
+function show(){ $("#overlay").classList.add("open"); document.body.style.overflow="hidden"; $("#overlay").scrollTop=0; }
 function closeCard(){ $("#overlay").classList.remove("open"); document.body.style.overflow=""; }
 
 $("#grid").addEventListener("click", e=>{
   const b=e.target.closest(".door"); if(!b) return;
-  const n=+b.dataset.n;
-  if(!unlocked(n)){
+  const n=+b.dataset.n, st=stateOf(n);
+  if(!canOpen(n)){
     b.classList.remove("shake"); void b.offsetWidth; b.classList.add("shake");
-    const d=dateOf(n); toast(`Esta ventana se abre el ${d.getDate()} de ${MESES[d.getMonth()]} 🔒`); return;
+    toast(st==="future" ? `Esta ventana se abre el ${fmt(n)} 🔒` : done.has(n) ? "Ya hiciste esta ventana ✓ ¡Muy bien!" : "Esta ventana ya pasó. ¡Hoy toca otra!");
+    return;
   }
   openCard(n);
 });
+$("#savebtn").onclick=openSave;
 $("#overlay").addEventListener("click", e=>{ if(e.target.id==="overlay") closeCard(); });
 document.addEventListener("keydown", e=>{ if(e.key==="Escape") closeCard(); });
-render();
+document.addEventListener("visibilitychange", ()=>{ if(!document.hidden) render(); });
+setInterval(render, 60000);
 
-/* ============ Nieve ============ */
-(function(){
-  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  const c=$("#snow"), x=c.getContext("2d"); let W,H,flakes=[];
-  const size=()=>{ W=c.width=innerWidth; H=c.height=innerHeight; flakes=Array.from({length:Math.min(70,Math.floor(W/16))},()=>({x:Math.random()*W,y:Math.random()*H,r:Math.random()*2.6+.8,v:Math.random()*.8+.3,a:Math.random()*6})); };
-  size(); addEventListener("resize",size);
-  (function tick(){ x.clearRect(0,0,W,H); x.fillStyle="rgba(255,255,255,.7)";
-    for(const f of flakes){ f.y+=f.v; f.a+=.01; f.x+=Math.sin(f.a)*.4; if(f.y>H+5){f.y=-5;f.x=Math.random()*W}
-      x.beginPath(); x.arc(f.x,f.y,f.r,0,7); x.fill(); }
-    requestAnimationFrame(tick); })();
-})();
+$("#credits").innerHTML = "Fotos (Wikimedia Commons): " + TASKS.map((t,i)=>t.img?`día ${i+1}: <a href="${t.img.u}" target="_blank" rel="noopener">${esc(t.img.by)}</a> (${esc(t.img.lic)})`:"").filter(Boolean).join(" · ");
+render();
 </script>
 </body>
 </html>
