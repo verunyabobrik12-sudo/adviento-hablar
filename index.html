@@ -121,8 +121,16 @@ h1 span{color:var(--gold)}
 .help summary{cursor:pointer;font-weight:800;padding:12px 16px;list-style:none}
 .help summary::-webkit-details-marker{display:none}
 .help summary::before{content:"💡 "}
-.help div{padding:0 16px 14px;font-weight:600;line-height:1.7}
-.help b{background:#fff;border-radius:7px;padding:1px 7px;margin-right:2px;display:inline-block}
+.help>div{padding:0 14px 14px}
+.hb{background:#fff;border-radius:14px;padding:11px 14px;margin-top:8px}
+.hb h4{font-family:'Fredoka',sans-serif;font-size:1rem;margin-bottom:7px;color:var(--plum)}
+.words{list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:6px 12px}
+.words li{display:flex;flex-direction:column;line-height:1.25}
+.words b{font-weight:800;color:var(--ink)}
+.words span{font-size:.84rem;color:var(--muted);font-weight:600}
+.phr{padding-left:20px;display:grid;gap:6px;font-weight:600;line-height:1.4}
+.phr li::marker{color:var(--coral)}
+.tag2{background:var(--cream2);border-radius:99px;padding:3px 12px;font-weight:800;display:inline-block;margin:2px 2px 2px 0}
 .actions{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
 .btn{flex:1;min-width:140px;border:0;border-radius:15px;padding:14px 16px;font:inherit;font-weight:800;font-size:1.02rem;cursor:pointer;box-shadow:0 4px 0 rgba(0,0,0,.25);transition:transform .1s;color:var(--ink)}
 .btn:active{transform:translateY(3px);box-shadow:0 1px 0 rgba(0,0,0,.25)}
@@ -177,118 +185,153 @@ footer.card-foot{text-align:center;padding:0 0 14px;font-size:.78rem;font-weight
 const START = { y: 2026, m: 11, d: 1 };
 
 /* t: título · ti: instrucción · g: temas · k: "tema" | "imagen"
-   q: preguntas · h: ayuda · img: foto (archivo en /img) */
+   q: preguntas · h: ayuda (ver HELP) · img: foto (archivo en /img) */
 const TASKS = [
  /* --- Familia, aspecto, carácter, profesiones --- */
  {t:"Chocolate",k:"tema",g:["Comida","Gustos"],ti:"Lee las preguntas y responde.",
-  q:["¿Eres más de chocolate negro, con leche o blanco? ¿Por qué?","¿Cuándo comiste chocolate por última vez? ¿Dónde estabas?","¿Cómo prefieres el chocolate: en bombones, en tabletas, en postres o en bebidas calientes?","Si tuvieras que regalar chocolate a alguien, ¿a quién y por qué?"],
-  h:"Me gusta más… · Prefiero… · Se lo regalaría a… porque… · negro · con leche · blanco"},
+  q:["¿Eres más de chocolate negro, con leche o blanco? ¿Por qué?","¿Cuándo comiste chocolate por última vez? ¿Dónde estabas?","¿Cómo prefieres el chocolate: en bombones, en tabletas, en postres o en bebidas calientes?","Si tuvieras que regalar chocolate a alguien, ¿a quién y por qué?"]},
  {t:"Mi familia",k:"tema",g:["Familia"],ti:"Habla de tu familia.",
-  q:["¿Cuántas personas hay en tu familia? ¿Quiénes son?","¿Cómo se llaman tus padres y a qué se dedican?","¿Tienes hermanos, primos o abuelos? ¿Dónde viven?","¿Quién de tu familia es el más divertido? ¿Por qué?"],
-  h:"Mi madre se llama… · Tengo un hermano / una hermana · Mi abuelo vive en… · el/la más…"},
+  q:["¿Cuántas personas hay en tu familia? ¿Quiénes son?","¿Cómo se llaman tus padres y a qué se dedican?","¿Tienes hermanos, primos o abuelos? ¿Dónde viven?","¿Quién de tu familia es el más divertido? ¿Por qué?"]},
  {t:"Una familia en la mesa",k:"imagen",g:["Familia","Comida"],ti:"Mira la foto y describe a las personas.",
   img:{f:"familia-mesa.jpg",alt:"Una familia de cinco personas come en una mesa.",by:"National Cancer Institute",lic:"Dominio público",u:"https://commons.wikimedia.org/wiki/File:Family_eating_meal.jpg"},
-  q:["¿Cuántas personas hay en la foto? ¿Quiénes pueden ser: padres, hijos, abuelos?","¿Cómo es cada persona? Habla del pelo, de la ropa y de la edad.","¿Qué hay en la mesa? ¿Qué están comiendo?","¿Dónde están? ¿Es de día o de noche?","¿Cómo se sienten? ¿Están contentos?"],
-  h:"Hay… personas · Creo que son… · tiene el pelo largo/corto · lleva una camisa · están comiendo · están hablando"},
+  q:["¿Cuántas personas hay en la foto? ¿Quiénes pueden ser: padres, hijos, abuelos?","¿Cómo es cada persona? Habla del pelo, de la ropa y de la edad.","¿Qué hay en la mesa? ¿Qué están comiendo?","¿Dónde están? ¿Es de día o de noche?","¿Cómo se sienten? ¿Están contentos?"]},
  {t:"Cómo soy",k:"tema",g:["Aspecto físico"],ti:"Describe tu aspecto.",
-  q:["¿Cómo eres físicamente? Habla de tu altura, tu pelo y tus ojos.","¿A quién de tu familia te pareces?","¿Qué ropa te gusta llevar?","¿Qué cosa de tu aspecto te gusta más?"],
-  h:"Soy alto/a · bajo/a · delgado/a · Tengo el pelo… · los ojos… · Me parezco a… · Llevo…"},
+  q:["¿Cómo eres físicamente? Habla de tu altura, tu pelo y tus ojos.","¿A quién de tu familia te pareces?","¿Qué ropa te gusta llevar?","¿Qué cosa de tu aspecto te gusta más?"]},
  {t:"En la cocina",k:"imagen",g:["Aspecto físico","Personas"],ti:"Mira la foto y describe a las personas.",
   img:{f:"cocina-gente.jpg",alt:"Varias personas, entre ellas una mujer rubia y un bebé, en una cocina.",by:"Infrogmation of New Orleans",lic:"CC BY 2.0",u:"https://commons.wikimedia.org/wiki/File:New_Year_Kitchen_New_Orleans.jpg"},
-  q:["¿Cuántas personas ves? ¿Cómo son? Descríbelas.","¿Qué ropa llevan?","¿Qué están haciendo?","¿Qué cosas ves en la cocina?","¿Cuál es la relación entre estas personas, crees tú? Inventa una historia."],
-  h:"rubia · morena · de pelo largo · lleva un vestido rojo · está cocinando · está sonriendo · un bebé"},
+  q:["¿Cuántas personas ves? ¿Cómo son? Descríbelas.","¿Qué ropa llevan?","¿Qué están haciendo?","¿Qué cosas ves en la cocina?","¿Cuál es la relación entre estas personas, crees tú? Inventa una historia."]},
  {t:"Mi carácter",k:"tema",g:["Carácter"],ti:"Habla de cómo eres por dentro.",
-  q:["¿Cómo es tu carácter? Di tres palabras.","¿Eres más tranquilo/a o más nervioso/a? ¿Por qué?","¿Qué cualidad es más importante en un amigo?","¿Qué defecto tienes?"],
-  h:"Soy simpático/a · trabajador/a · tímido/a · divertido/a · a veces soy un poco… · perezoso/a · generoso/a"},
+  q:["¿Cómo es tu carácter? Di tres palabras.","¿Eres más tranquilo/a o más nervioso/a? ¿Por qué?","¿Qué cualidad es más importante en un amigo?","¿Qué defecto tienes?"]},
  {t:"Mi mejor amigo/a",k:"tema",g:["Carácter","Aspecto físico"],ti:"Describe a una persona importante para ti.",
-  q:["¿Quién es tu mejor amigo o amiga? ¿Cómo se llama?","¿Cómo es físicamente?","¿Cómo es su carácter?","¿Qué hacéis juntos? ¿Qué os gusta hacer?"],
-  h:"Mi mejor amigo/a se llama… · Es… y tiene… · Nos gusta… · Siempre…"},
+  q:["¿Quién es tu mejor amigo o amiga? ¿Cómo se llama?","¿Cómo es físicamente?","¿Cómo es su carácter?","¿Qué hacéis juntos? ¿Qué os gusta hacer?"]},
  {t:"Profesiones",k:"tema",g:["Profesiones"],ti:"Habla de los trabajos.",
-  q:["¿A qué te dedicas? ¿Trabajas o estudias?","¿A qué se dedican las personas de tu familia?","¿Dónde trabajan? ¿Les gusta su trabajo?","¿Qué profesión no te gustaría tener? ¿Por qué?"],
-  h:"Soy… · Trabajo en… · Mi padre es médico/a · profesor/a · ingeniero/a · cocinero/a · vendedor/a"},
+  q:["¿A qué te dedicas? ¿Trabajas o estudias?","¿A qué se dedican las personas de tu familia?","¿Dónde trabajan? ¿Les gusta su trabajo?","¿Qué profesión no te gustaría tener? ¿Por qué?"]},
  {t:"En la clase",k:"imagen",g:["Profesiones"],ti:"Mira la foto y describe qué pasa.",
   img:{f:"profesora.jpg",alt:"Una profesora explica delante de una pizarra a sus estudiantes.",by:"Harrison Keely",lic:"CC BY 4.0",u:"https://commons.wikimedia.org/wiki/File:A_college_professor_teaching_in_a_university_classroom_full_of_students_in_Tennessee,_United_States_01.jpg"},
-  q:["¿Dónde están las personas?","¿Qué profesión tiene la mujer? ¿Cómo lo sabes?","¿Qué está haciendo ella? ¿Qué están haciendo los estudiantes?","¿Cómo es la mujer? Descríbela.","¿Te gusta estudiar así? ¿Por qué?"],
-  h:"una profesora · una pizarra · está explicando · están escuchando · está escribiendo · los estudiantes"},
+  q:["¿Dónde están las personas?","¿Qué profesión tiene la mujer? ¿Cómo lo sabes?","¿Qué está haciendo ella? ¿Qué están haciendo los estudiantes?","¿Cómo es la mujer? Descríbela.","¿Te gusta estudiar así? ¿Por qué?"]},
  {t:"Mi trabajo ideal",k:"tema",g:["Profesiones"],ti:"Habla de tu futuro.",
-  q:["¿Qué querías ser de pequeño/a?","¿Qué profesión te gustaría tener? ¿Por qué?","¿Dónde te gustaría trabajar?","¿Qué cosas buenas y malas tiene ese trabajo?"],
-  h:"Me gustaría ser… · Quiero trabajar en… · Es un trabajo… (interesante, difícil, bien pagado)"},
+  q:["¿Qué querías ser de pequeño/a?","¿Qué profesión te gustaría tener? ¿Por qué?","¿Dónde te gustaría trabajar?","¿Qué cosas buenas y malas tiene ese trabajo?"]},
 
  /* --- Rutina, gustos, tiempo libre --- */
  {t:"Mi rutina",k:"tema",g:["Rutina diaria"],ti:"Cuenta tu día normal.",
-  q:["¿A qué hora te levantas y qué haces por la mañana?","¿Qué haces por la tarde?","¿A qué hora cenas y a qué hora te acuestas?","¿Qué parte del día te gusta más?"],
-  h:"me levanto · me ducho · desayuno · voy a… · vuelvo a casa · ceno · me acuesto · a las siete y media"},
+  q:["¿A qué hora te levantas y qué haces por la mañana?","¿Qué haces por la tarde?","¿A qué hora cenas y a qué hora te acuestas?","¿Qué parte del día te gusta más?"]},
  {t:"Lunes y domingo",k:"tema",g:["Rutina diaria"],ti:"Compara dos días.",
-  q:["¿Cómo es tu lunes? ¿Qué haces?","¿Y tu domingo? ¿Qué haces diferente?","¿A qué hora te levantas cada día?","¿Qué día de la semana te gusta más? ¿Por qué?"],
-  h:"los lunes · los domingos · temprano · tarde · en cambio · pero"},
+  q:["¿Cómo es tu lunes? ¿Qué haces?","¿Y tu domingo? ¿Qué haces diferente?","¿A qué hora te levantas cada día?","¿Qué día de la semana te gusta más? ¿Por qué?"]},
  {t:"Me gusta, no me gusta",k:"tema",g:["Gustar"],ti:"Habla de tus gustos.",
-  q:["¿Qué te gusta hacer en tu tiempo libre?","¿Qué no te gusta nada?","¿Qué música te gusta? ¿Qué películas te encantan?","¿Qué le gusta hacer a tu mejor amigo/a?"],
-  h:"Me gusta + infinitivo · Me gustan + plural · No me gusta nada · Me encanta · A mi amigo/a le gusta…"},
+  q:["¿Qué te gusta hacer en tu tiempo libre?","¿Qué no te gusta nada?","¿Qué música te gusta? ¿Qué películas te encantan?","¿Qué le gusta hacer a tu mejor amigo/a?"]},
  {t:"En el parque",k:"imagen",g:["Tiempo libre","Gustar"],ti:"Mira la foto y describe qué pasa.",
   img:{f:"parque.jpg",alt:"Un grupo de personas salta a la vez en un parque.",by:"Evil Erin",lic:"CC BY 2.0",u:"https://commons.wikimedia.org/wiki/File:Family_jump.jpg"},
-  q:["¿Cuántas personas hay? ¿Qué están haciendo?","¿Dónde están? ¿Qué tiempo hace?","¿Qué ropa llevan?","¿Crees que son una familia o amigos? ¿Por qué?","¿Te gusta hacer cosas así con tu familia o amigos?"],
-  h:"están saltando · están riendo · hace sol · un parque · la hierba · Me gusta… con mis amigos"},
+  q:["¿Cuántas personas hay? ¿Qué están haciendo?","¿Dónde están? ¿Qué tiempo hace?","¿Qué ropa llevan?","¿Crees que son una familia o amigos? ¿Por qué?","¿Te gusta hacer cosas así con tu familia o amigos?"]},
 
  /* --- Ciudad y calle --- */
  {t:"Mi ciudad",k:"tema",g:["Ciudad"],ti:"Habla de tu ciudad.",
-  q:["¿Cómo se llama tu ciudad? ¿Es grande o pequeña?","¿Qué lugares hay en ella: parques, museos, tiendas?","¿Qué es lo mejor de tu ciudad? ¿Y lo peor?","¿Recomiendas visitarla? ¿Qué lugar es imprescindible?"],
-  h:"Mi ciudad es… · Hay un/una… · No hay… · Lo mejor es… · Te recomiendo visitar…"},
+  q:["¿Cómo se llama tu ciudad? ¿Es grande o pequeña?","¿Qué lugares hay en ella: parques, museos, tiendas?","¿Qué es lo mejor de tu ciudad? ¿Y lo peor?","¿Recomiendas visitarla? ¿Qué lugar es imprescindible?"]},
  {t:"En la calle",k:"imagen",g:["Ciudad","Calle"],ti:"Mira la foto y describe la calle.",
   img:{f:"calle.jpg",alt:"Personas caminan por una calle estrecha de una ciudad antigua.",by:"Fons Heijnsbroek",lic:"CC0",u:"https://commons.wikimedia.org/wiki/File:People_are_walking_and_standing_in_the_street_Zeedijk_in_Amsterdam_old_city;_free_download_photo_in_high_resolutions_by_Fons_Heijnbroek,_street_photography_The_Netherlands,_CCO.tif"},
-  q:["¿Cómo es la calle: ancha o estrecha, nueva o antigua?","¿Qué edificios y tiendas ves?","¿Qué están haciendo las personas?","¿Qué tiempo hace? ¿Qué ropa llevan?","¿Te gustaría vivir en una calle así? ¿Por qué?"],
-  h:"un edificio · una tienda · una farola · la gente camina · está paseando · a la derecha · a la izquierda"},
+  q:["¿Cómo es la calle: ancha o estrecha, nueva o antigua?","¿Qué edificios y tiendas ves?","¿Qué están haciendo las personas?","¿Qué tiempo hace? ¿Qué ropa llevan?","¿Te gustaría vivir en una calle así? ¿Por qué?"]},
  {t:"¿Cómo llego a…?",k:"tema",g:["Ciudad","Direcciones"],ti:"Explica el camino.",
-  q:["Explica cómo ir de tu casa a la parada de autobús o al metro.","¿Dónde está el supermercado más cercano a tu casa?","¿Cómo se va de tu casa al centro de la ciudad?","Un turista pregunta: «¿Dónde está la farmacia?». ¿Qué le contestas?"],
-  h:"Sigue recto · Gira a la derecha / a la izquierda · Cruza la calle · está al lado de… · enfrente de… · cerca / lejos"},
+  q:["Explica cómo ir de tu casa a la parada de autobús o al metro.","¿Dónde está el supermercado más cercano a tu casa?","¿Cómo se va de tu casa al centro de la ciudad?","Un turista pregunta: «¿Dónde está la farmacia?». ¿Qué le contestas?"]},
  {t:"Mi barrio",k:"tema",g:["Ciudad","Calle"],ti:"Habla del lugar donde vives.",
-  q:["¿Cómo es tu barrio? ¿Es tranquilo o ruidoso?","¿Qué hay cerca de tu casa?","¿Qué haces normalmente en tu barrio?","¿Cómo son tus vecinos?"],
-  h:"Vivo en el barrio de… · cerca de mi casa hay… · Es tranquilo · ruidoso · Mis vecinos son…"},
+  q:["¿Cómo es tu barrio? ¿Es tranquilo o ruidoso?","¿Qué hay cerca de tu casa?","¿Qué haces normalmente en tu barrio?","¿Cómo son tus vecinos?"]},
 
  /* --- Vivienda y comida --- */
  {t:"Mi casa",k:"tema",g:["Vivienda"],ti:"Describe tu casa.",
-  q:["¿Vives en una casa o en un piso? ¿Es grande o pequeño?","¿Cuántas habitaciones tiene? ¿Cuáles son?","¿Con quién vives?","¿Qué es lo que más te gusta de tu casa?"],
-  h:"Vivo en un piso · una casa · Tiene… habitaciones · el salón · la cocina · el baño · el dormitorio · el balcón"},
+  q:["¿Vives en una casa o en un piso? ¿Es grande o pequeño?","¿Cuántas habitaciones tiene? ¿Cuáles son?","¿Con quién vives?","¿Qué es lo que más te gusta de tu casa?"]},
  {t:"Una cocina",k:"imagen",g:["Vivienda"],ti:"Mira la foto y describe el lugar.",
   img:{f:"cocina-moderna.jpg",alt:"Una cocina moderna y luminosa de un apartamento, con salón.",by:"Chris Olszewski",lic:"CC BY-SA 4.0",u:"https://commons.wikimedia.org/wiki/File:Kitchen,_Interior_of_apartment_in_Brisbane,_2025,_03.jpg"},
-  q:["¿Qué habitaciones ves?","¿Qué muebles hay? ¿Dónde están?","¿De qué colores es? ¿Es grande o pequeña?","¿Te gusta esta casa? ¿Cómo es diferente de la tuya?","¿Quién crees que vive aquí?"],
-  h:"Hay una mesa · una nevera · un sofá · una lámpara · está en el centro · a la izquierda · al lado de… · debajo de… · encima de…"},
+  q:["¿Qué habitaciones ves?","¿Qué muebles hay? ¿Dónde están?","¿De qué colores es? ¿Es grande o pequeña?","¿Te gusta esta casa? ¿Cómo es diferente de la tuya?","¿Quién crees que vive aquí?"]},
  {t:"Mis muebles",k:"tema",g:["Vivienda"],ti:"Cuenta dónde están las cosas.",
-  q:["¿Qué muebles hay en tu salón? ¿Dónde está cada uno?","¿Qué hay encima de tu mesa, ahora mismo?","¿Qué hay debajo de tu cama?","¿Qué mueble te gustaría comprar?"],
-  h:"el sofá · la estantería · el armario · encima de · debajo de · al lado de · entre · delante de · detrás de"},
+  q:["¿Qué muebles hay en tu salón? ¿Dónde está cada uno?","¿Qué hay encima de tu mesa, ahora mismo?","¿Qué hay debajo de tu cama?","¿Qué mueble te gustaría comprar?"]},
  {t:"Mi casa ideal",k:"tema",g:["Vivienda"],ti:"Imagina tu casa de ensueño.",
-  q:["¿Dónde estaría tu casa ideal: en la ciudad, en la playa, en la montaña?","¿Cuántas habitaciones tendría? ¿Cómo sería?","¿Qué cosas especiales tendría: piscina, jardín, cine?","¿Con quién te gustaría vivir en ella?"],
-  h:"Me gustaría vivir en… · Tendría… · Habría… · sería muy… · con jardín · con vistas al mar"},
+  q:["¿Dónde estaría tu casa ideal: en la ciudad, en la playa, en la montaña?","¿Cuántas habitaciones tendría? ¿Cómo sería?","¿Qué cosas especiales tendría: piscina, jardín, cine?","¿Con quién te gustaría vivir en ella?"]},
  {t:"Mi plato favorito",k:"tema",g:["Comida"],ti:"Habla de la comida que te gusta.",
-  q:["¿Cuál es tu plato favorito? ¿Qué lleva?","¿Quién lo prepara mejor en tu familia?","¿Qué comida no te gusta nada?","¿Cocinas tú? ¿Qué sabes cocinar?"],
-  h:"Mi plato favorito es… · lleva carne / pescado / verdura · está muy rico · Sé cocinar… · No soporto…"},
+  q:["¿Cuál es tu plato favorito? ¿Qué lleva?","¿Quién lo prepara mejor en tu familia?","¿Qué comida no te gusta nada?","¿Cocinas tú? ¿Qué sabes cocinar?"]},
  {t:"En el mercado",k:"imagen",g:["Comida","Compras"],ti:"Mira la foto y describe qué pasa.",
   img:{f:"mercado.jpg",alt:"Una vendedora atiende un puesto de fruta con muchos colores.",by:"Adam Jones",lic:"CC BY 2.0",u:"https://commons.wikimedia.org/wiki/File:Woman_Vendor_at_Fruit_Stall_-_Thursday_Market_-_Narvarte_-_Mexico_City_-_Mexico.jpg"},
-  q:["¿Dónde está la mujer? ¿Qué profesión tiene?","¿Qué frutas y verduras ves? ¿De qué color son?","¿Qué está haciendo la mujer?","¿Qué comprarías tú en este puesto?","¿Compras en el mercado o en el supermercado? ¿Por qué?"],
-  h:"un puesto · la vendedora · las manzanas · las naranjas · las sandías · está preparando · Compraría…"},
+  q:["¿Dónde está la mujer? ¿Qué profesión tiene?","¿Qué frutas y verduras ves? ¿De qué color son?","¿Qué está haciendo la mujer?","¿Qué comprarías tú en este puesto?","¿Compras en el mercado o en el supermercado? ¿Por qué?"]},
  {t:"En la terraza",k:"imagen",g:["Comida","Personas"],ti:"Mira la foto y describe qué pasa.",
   img:{f:"terraza.jpg",alt:"Personas sentadas en la terraza de un café.",by:"Joe Mabel",lic:"CC BY-SA 4.0",u:"https://commons.wikimedia.org/wiki/File:Arthur_Avenue_41_-_terrace_of_Noya_Cafe.jpg"},
-  q:["¿Dónde están las personas?","¿Qué están tomando o comiendo?","¿Cómo son? ¿Qué ropa llevan?","¿De qué crees que están hablando?","¿Qué pedirías tú en este café?"],
-  h:"un café · una terraza · están sentados · están tomando · Yo pediría… · un café con leche · un zumo · una tostada"},
+  q:["¿Dónde están las personas?","¿Qué están tomando o comiendo?","¿Cómo son? ¿Qué ropa llevan?","¿De qué crees que están hablando?","¿Qué pedirías tú en este café?"]},
  {t:"De noche en la plaza",k:"imagen",g:["Comida","Ciudad"],ti:"Mira la foto y describe qué pasa.",
   img:{f:"noche.jpg",alt:"Gente cena en mesas al aire libre por la noche.",by:"Daniel Case",lic:"CC BY-SA 3.0",u:"https://commons.wikimedia.org/wiki/File:Diners_at_street_cafe_in_Plaza_de_la_Solidaridad,_Mexico_City.jpg"},
-  q:["¿Qué hora es? ¿Es de día o de noche?","¿Cuántas personas hay? ¿Qué están haciendo?","¿Qué ambiente hay: tranquilo, divertido, ruidoso?","¿Qué cosas ves en la imagen?","¿Te gustaría cenar aquí? ¿Qué pedirías?"],
-  h:"de noche · las mesas · hay mucha gente · está cenando · el ambiente es… · Me gustaría…"},
+  q:["¿Qué hora es? ¿Es de día o de noche?","¿Cuántas personas hay? ¿Qué están haciendo?","¿Qué ambiente hay: tranquilo, divertido, ruidoso?","¿Qué cosas ves en la imagen?","¿Te gustaría cenar aquí? ¿Qué pedirías?"]},
 
  {t:"Vacaciones ideales",k:"tema",g:["Tiempo libre"],ti:"Imagina tus vacaciones de ensueño.",
-  q:["¿Adónde te gustaría ir de vacaciones? ¿Por qué?","¿Con quién irías? ¿Cómo viajarías?","¿Dónde te quedarías: en un hotel, en un camping, en casa de amigos?","¿Qué harías allí cada día?"],
-  h:"Me gustaría ir a… · Iría con… · Viajaría en avión / en tren · Me quedaría en… · Haría…"},
+  q:["¿Adónde te gustaría ir de vacaciones? ¿Por qué?","¿Con quién irías? ¿Cómo viajarías?","¿Dónde te quedarías: en un hotel, en un camping, en casa de amigos?","¿Qué harías allí cada día?"]},
 
  /* --- Pasado: indefinido (primeros pasos) e imperfecto (al final) --- */
  {t:"Ayer",k:"tema",g:["Pasado"],ti:"Cuenta qué hiciste ayer.",
-  q:["¿A qué hora te levantaste ayer y qué desayunaste?","¿Adónde fuiste? ¿Con quién hablaste?","¿Qué comiste y qué cenaste?","¿Qué fue lo mejor de ayer?"],
-  h:"me levanté · desayuné · comí · fui · hablé · vi · hice · volví · ayer · anoche"},
+  q:["¿A qué hora te levantaste ayer y qué desayunaste?","¿Adónde fuiste? ¿Con quién hablaste?","¿Qué comiste y qué cenaste?","¿Qué fue lo mejor de ayer?"]},
  {t:"El fin de semana pasado",k:"tema",g:["Pasado"],ti:"Cuenta tu fin de semana.",
-  q:["¿Qué hiciste el sábado?","¿Saliste con alguien? ¿Adónde fuisteis?","¿Qué compraste o qué cocinaste?","¿Qué hiciste el domingo?","¿Fue un buen fin de semana? ¿Por qué?"],
-  h:"el sábado · el domingo · por la mañana · después · luego · al final · fue + adjetivo"},
+  q:["¿Qué hiciste el sábado?","¿Saliste con alguien? ¿Adónde fuisteis?","¿Qué compraste o qué cocinaste?","¿Qué hiciste el domingo?","¿Fue un buen fin de semana? ¿Por qué?"]},
  {t:"Cuando era pequeño/a",k:"tema",g:["Infancia"],ti:"¡Último día! Recuerda tu infancia.",
-  q:["¿Dónde vivías cuando eras pequeño/a? ¿Cómo era tu casa?","¿Cómo eras tú? ¿A qué jugabas con tus amigos?","¿Qué te gustaba comer? ¿Qué no te gustaba?","¿Qué querías ser de mayor?","¡Felicidades! ¿Qué fue lo mejor de este calendario?"],
-  h:"era · vivía · tenía · jugaba · me gustaba · quería ser · de pequeño/a · antes"}
+  q:["¿Dónde vivías cuando eras pequeño/a? ¿Cómo era tu casa?","¿Cómo eras tú? ¿A qué jugabas con tus amigos?","¿Qué te gustaba comer? ¿Qué no te gustaba?","¿Qué querías ser de mayor?","¡Felicidades! ¿Qué fue lo mejor de este calendario?"]}
 ];
+
+/* Ayuda por tarea: w — palabras [español, ruso] · f — frases · x — para sonar natural */
+const HELP = {
+"Chocolate":{w:[["amargo","горький"],["cremoso","нежный, сливочный"],["derretirse","таять"],["antojo","сильное желание съесть"],["adicto/a","зависимый"]],
+ f:["Soy superadicto/a al chocolate.","Se me derrite en la boca.","Para mí no hay nada mejor que un buen chocolate caliente."],x:["la verdad es que…","¡qué rico!","sin duda"]},
+"Mi familia":{w:[["pariente","родственник"],["sobrino/a","племянник/ница"],["suegro/a","свёкор, свекровь / тесть, тёща"],["unido/a","дружный"],["parecerse a","быть похожим на"]],
+ f:["Somos una familia muy unida.","Nos reunimos todos los domingos.","Mi hermano y yo nos llevamos genial."],x:["la verdad…","¿sabes?","en general"]},
+"Una familia en la mesa":{w:[["el mantel","скатерть"],["la olla","кастрюля"],["servir","накладывать"],["sonriente","улыбающийся"],["de tres generaciones","три поколения"]],
+ f:["Parece que están celebrando algo.","A la izquierda hay una niña que…","Me da la impresión de que son una familia."],x:["parece que…","seguramente","yo diría que…"]},
+"Cómo soy":{w:[["la estatura","рост"],["pecas","веснушки"],["moreno/a","смуглый, темноволосый"],["rizado / liso","кудрявый / прямой"],["arrugas","морщины"]],
+ f:["Tengo el pelo largo y rizado.","Mido un metro setenta.","Se me da bien hacer reír a la gente."],x:["más o menos","la verdad es que…","digamos que…"]},
+"En la cocina":{w:[["la sartén","сковорода"],["el delantal","фартук"],["rubio/a","светловолосый"],["el bebé","малыш"],["tener prisa","спешить"]],
+ f:["La mujer de rojo lleva a un bebé en brazos.","Parece que preparan una comida especial.","Detrás hay alguien que está mirando."],x:["al fondo","en primer plano","a mi parecer"]},
+"Mi carácter":{w:[["testarudo/a","упрямый"],["sensible","чувствительный"],["despistado/a","рассеянный"],["optimista","оптимист"],["tener buen humor","быть в хорошем настроении"]],
+ f:["Soy muy despistado/a: siempre pierdo las llaves.","Me enfado rápido, pero se me pasa pronto.","Dicen que tengo un corazón de oro."],x:["a veces","la verdad es que…","¡ojo!"]},
+"Mi mejor amigo/a":{w:[["confiar en","доверять"],["fiel","верный"],["conocerse","знать друг друга"],["quedar con","договариваться о встрече"],["chismear","сплетничать"]],
+ f:["Nos conocemos desde hace diez años.","Con él/ella puedo hablar de todo.","Siempre me apoya cuando lo necesito."],x:["desde siempre","sin duda","la verdad…"]},
+"Profesiones":{w:[["la empresa","компания"],["el sueldo","зарплата"],["el horario","график"],["el jefe / la jefa","начальник"],["jubilado/a","пенсионер"]],
+ f:["Trabajo en una oficina desde las nueve hasta las cinco.","Mi madre es enfermera: cuida a los enfermos.","Estoy buscando un nuevo trabajo."],x:["en realidad","la verdad es que…","más o menos"]},
+"En la clase":{w:[["la pizarra","доска"],["explicar","объяснять"],["tomar apuntes","конспектировать"],["el aula","аудитория"],["atento/a","внимательный"]],
+ f:["Parece que es una profesora universitaria.","Los estudiantes están tomando apuntes.","Creo que están en plena clase."],x:["seguramente","a lo mejor","parece que…"]},
+"Mi trabajo ideal":{w:[["emprender","начинать своё дело"],["bien pagado","хорошо оплачиваемый"],["creativo","творческий"],["trabajar desde casa","работать из дома"],["vocación","призвание"]],
+ f:["Mi sueño es trabajar con niños.","Lo que más me importa es disfrutar de mi trabajo.","Me veo trabajando en el extranjero."],x:["ojalá","algún día","sin duda"]},
+"Mi rutina":{w:[["madrugar","рано вставать"],["la siesta","сиеста"],["arreglarse","приводить себя в порядок"],["la hora punta","час пик"],["acostarse tarde","поздно ложиться"]],
+ f:["Madrugo todos los días para llegar a tiempo.","Después de comer, me echo una siesta.","Por la noche me relajo viendo series."],x:["normalmente","casi siempre","después de eso"]},
+"Lunes y domingo":{w:[["agotado/a","измотанный"],["el madrugón","ранний подъём"],["quedarse en la cama","оставаться в постели"],["tomarse el día con calma","не спешить"],["el plan","планы"]],
+ f:["Los lunes voy corriendo a todas partes.","Los domingos no hago absolutamente nada.","Prefiero el domingo, porque no tengo prisa."],x:["en cambio","por el contrario","¡por fin!"]},
+"Me gusta, no me gusta":{w:[["me chifla","я без ума"],["no soporto","терпеть не могу"],["me da igual","мне всё равно"],["me aburre","мне скучно"],["me apasiona","я увлекаюсь"]],
+ f:["Me chifla la música en directo.","No soporto madrugar.","Lo que más me gusta es pasear sin prisa."],x:["la verdad es que…","¡para nada!","¡me encanta!"]},
+"En el parque":{w:[["saltar","прыгать"],["la hierba","трава"],["reírse","смеяться"],["la alegría","радость"],["el grupo","группа"]],
+ f:["Todos saltan a la vez: ¡qué divertido!","Parece que se lo están pasando genial.","Hace un día perfecto para estar al aire libre."],x:["se nota que…","seguro que…","¡qué buen rollo!"]},
+"Mi ciudad":{w:[["la plaza","площадь"],["el casco antiguo","старый город"],["animado/a","оживлённый"],["el atasco","пробка"],["las afueras","окраины"]],
+ f:["Mi ciudad tiene un casco antiguo precioso.","Lo mejor es que todo está cerca.","Lo peor son los atascos de la mañana."],x:["la verdad…","sin embargo","por eso"]},
+"En la calle":{w:[["el adoquín","брусчатка"],["la fachada","фасад"],["el escaparate","витрина"],["estrecho/a","узкий"],["pasear","гулять"]],
+ f:["La calle es tan estrecha que casi no cabe un coche.","Hay muchos turistas haciendo fotos.","Me recuerda a una ciudad europea antigua."],x:["a primera vista","a lo lejos","en primer plano"]},
+"¿Cómo llego a…?":{w:[["la esquina","угол"],["el semáforo","светофор"],["la rotonda","круговая развязка"],["el cruce","перекрёсток"],["la manzana","квартал"]],
+ f:["Sigue todo recto hasta el semáforo.","Gira a la derecha y verás la farmacia.","Está a unos cinco minutos andando."],x:["¡no tiene pérdida!","justo ahí","más adelante"]},
+"Mi barrio":{w:[["el vecino","сосед"],["el parque infantil","детская площадка"],["tranquilo","спокойный"],["el ruido","шум"],["el panadero","пекарь"]],
+ f:["En mi barrio todos nos conocemos.","Cerca de mi casa hay una panadería buenísima.","Es un lugar seguro y con mucho ambiente."],x:["la verdad es que…","por suerte","¡qué suerte!"]},
+"Mi casa":{w:[["el piso","квартира"],["el ascensor","лифт"],["el trastero","кладовка"],["luminoso/a","светлый"],["acogedor/a","уютный"]],
+ f:["Mi piso es pequeño pero muy acogedor.","Desde mi balcón se ve todo el barrio.","La habitación que más uso es la cocina."],x:["lo bueno es que…","lo malo es que…","en total"]},
+"Una cocina":{w:[["la encimera","столешница"],["la nevera","холодильник"],["el taburete","табурет"],["el fregadero","раковина"],["amplio/a","просторный"]],
+ f:["La cocina es abierta y se ve el salón.","Me encanta que haya tanta luz natural.","En mi cocina no cabe tanta gente."],x:["al fondo","justo al lado","parece que…"]},
+"Mis muebles":{w:[["el sillón","кресло"],["la estantería","полка"],["la alfombra","ковёр"],["la cómoda","комод"],["empotrado","встроенный"]],
+ f:["Encima de la mesa hay un montón de papeles.","La lámpara está justo al lado del sofá.","Me gustaría cambiar todos los muebles."],x:["más o menos","por ahí","en el fondo"]},
+"Mi casa ideal":{w:[["la terraza","терраса"],["la piscina","бассейн"],["con vistas a…","с видом на…"],["espacioso/a","просторный"],["el estudio","кабинет"]],
+ f:["Tendría una casa con vistas al mar.","Habría un jardín enorme para mis perros.","Sería un lugar para recibir a mis amigos."],x:["ojalá","en un mundo perfecto","si pudiera…"]},
+"Mi plato favorito":{w:[["el ingrediente","ингредиент"],["picante","острый"],["jugoso","сочный"],["crujiente","хрустящий"],["rico/a","вкусный"]],
+ f:["Es un plato que lleva carne, arroz y verduras.","Mi abuela lo prepara de maravilla.","Se me hace la boca agua solo de pensarlo."],x:["sin duda","¡qué rico!","¡buenísimo!"]},
+"En el mercado":{w:[["el puesto","прилавок"],["fresco/a","свежий"],["la báscula","весы"],["regatear","торговаться"],["de temporada","сезонный"]],
+ f:["Me llevo un kilo de naranjas, por favor.","¿A cuánto está el kilo de tomates?","Aquí la fruta es más fresca que en el súper."],x:["¡qué colorido!","a ver…","sin duda"]},
+"En la terraza":{w:[["la sobremesa","разговоры за столом после еды"],["el camarero","официант"],["la cuenta","счёт"],["la tapa","закуска"],["charlar","болтать"]],
+ f:["Están disfrutando de una sobremesa larga.","Yo pediría un café con leche y una tostada.","Parece que charlan de algo divertido."],x:["seguramente","a lo mejor","¡qué buen plan!"]},
+"De noche en la plaza":{w:[["las luces","огни"],["el ambiente","атмосфера"],["bullicioso","шумный"],["a la intemperie","под открытым небом"],["cenar fuera","ужинать вне дома"]],
+ f:["Hay un ambiente muy animado.","Me imagino que huele a comida rica.","Me gustaría cenar aquí con mis amigos."],x:["¡qué ambientazo!","se nota que…","la verdad es que…"]},
+"Vacaciones ideales":{w:[["la mochila","рюкзак"],["alojarse","останавливаться"],["la excursión","экскурсия"],["descansar","отдыхать"],["recorrer","объезжать, обходить"]],
+ f:["Me encantaría recorrer España en tren.","Alquilaría una casa cerca de la playa.","Lo primero que haría es no mirar el reloj."],x:["ojalá","algún día","¡qué ilusión!"]},
+"Ayer":{w:[["anoche","вчера вечером"],["de repente","вдруг"],["al final","в итоге"],["encontrarse con","встретиться"],["acabar","закончить"]],
+ f:["Ayer me levanté tardísimo.","Luego fui a comprar y me encontré con una amiga.","Terminé el día viendo una película."],x:["después","más tarde","por la noche"]},
+"El fin de semana pasado":{w:[["escaparse","улизнуть, съездить"],["pasarlo bien","хорошо провести время"],["relajarse","расслабиться"],["el plan","план"],["salir de fiesta","пойти гулять"]],
+ f:["El sábado salí con mis amigos.","Cocinamos juntos y lo pasamos genial.","El domingo me quedé en casa descansando."],x:["primero","luego","al final"]},
+"Cuando era pequeño/a":{w:[["travieso/a","шаловливый"],["el recuerdo","воспоминание"],["echar de menos","скучать"],["el juguete","игрушка"],["el patio","двор"]],
+ f:["Cuando era pequeño/a, jugaba en el patio todo el día.","Mi abuela me contaba cuentos antes de dormir.","Tengo muy buenos recuerdos de aquella época."],x:["en aquella época","recuerdo que…","¡qué tiempos!"]}
+};
+TASKS.forEach(t => { t.h = HELP[t.t]; });
 
 /* ============ Lógica ============ */
 const KEY = "adviento-hablar-v1";
@@ -346,6 +389,13 @@ function render(){
   $("#note").textContent = note;
 }
 
+function helpHtml(h){
+  const block=(ico,title,body)=>`<div class="hb"><h4>${ico} ${title}</h4>${body}</div>`;
+  return block("🧩","Palabras",`<ul class="words">${h.w.map(([a,b])=>`<li><b>${esc(a)}</b><span>${esc(b)}</span></li>`).join("")}</ul>`)
+       + block("💬","Frases",`<ul class="phr">${h.f.map(f=>`<li>${esc(f)}</li>`).join("")}</ul>`)
+       + block("✨","Para sonar natural",h.x.map(x=>`<b class="tag2">${esc(x)}</b>`).join(" "));
+}
+
 function openCard(n){
   const t = TASKS[n-1];
   const photo = t.img ? `<figure class="photo"><img src="img/${t.img.f}" alt="${esc(t.img.alt)}" loading="lazy">
@@ -362,7 +412,7 @@ function openCard(n){
     <div class="card-body">
       ${photo}
       <div class="qbox"><${list}>${t.q.map(q=>`<li>${esc(q)}</li>`).join("")}</${list}></div>
-      <details class="help"><summary>Ayuda: palabras y estructuras</summary><div>${t.h.split(" · ").map(w=>`<b>${esc(w)}</b>`).join(" ")}</div></details>
+      <details class="help"><summary>Ayuda: palabras y frases útiles</summary><div>${helpHtml(t.h)}</div></details>
       <div class="actions">
         <button class="btn main ${done.has(n)?"is-done":""}" id="ok">${done.has(n)?"✓ ¡Hecha!":"¡Ya lo he dicho!"}</button>
         ${profe && n<TASKS.length ? `<button class="btn sec" id="next">Siguiente →</button>`:""}
